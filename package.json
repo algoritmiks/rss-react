@@ -12,10 +12,11 @@
     "prepare": "husky",
     "pre-commit": "lint-staged"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-    }
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "react": "^18.3.1",
