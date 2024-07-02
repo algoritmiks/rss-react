@@ -6,9 +6,11 @@ import Search from './components/search/search'
 class App extends React.Component {
   render() {
     return (
-      <ErrorBoundary>
-        <Search />
-      </ErrorBoundary>
+      <div className="container">
+        <ErrorBoundary>
+          <Search />
+        </ErrorBoundary>
+      </div>
     )
   }
 }

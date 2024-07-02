@@ -11,7 +11,6 @@ interface State {
 class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
-    console.log(props)
     this.state = {
       hasError: false,
     }
@@ -19,7 +18,6 @@ class ErrorBoundary extends React.Component<Props, State> {
 
   static getDerivedStateFromError(error: Error) {
     if (error) {
-      console.log('error >', error.message)
       return { hasError: true }
     }
   }
