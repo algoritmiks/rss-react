@@ -8,8 +8,8 @@ interface State {
 interface Props {}
 
 class Search extends React.Component<Props, State> {
-  constructor() {
-    super({})
+  constructor(props: Props) {
+    super(props)
     this.state = {
       searchString: '',
     }
@@ -21,6 +21,7 @@ class Search extends React.Component<Props, State> {
     if (searchString) {
       this.setState({ searchString })
       //todo api request
+      console.log(searchString)
     }
   }
 
