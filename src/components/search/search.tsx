@@ -3,6 +3,7 @@ import css from './search.module.css'
 
 interface State {
   searchString: string
+  hasError: boolean
 }
 
 interface Props {}
@@ -12,6 +13,7 @@ class Search extends React.Component<Props, State> {
     super(props)
     this.state = {
       searchString: '',
+      hasError: false,
     }
     this.handleSearchChange = this.handleSearchChange.bind(this)
   }
@@ -21,18 +23,24 @@ class Search extends React.Component<Props, State> {
     if (searchString) {
       this.setState({ searchString })
       //todo api request
-      console.log(searchString)
     }
   }
 
   handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value)
     const searchString = e.target.value
     this.setState({ searchString })
     localStorage.setItem('searchString', searchString)
   }
 
+  handleError = () => {
+    this.setState({ hasError: true })
+  }
+
   render() {
+    if (this.state.hasError) {
+      throw new Error('Error occurred')
+    }
+
     return (
       <>
         <input
@@ -42,6 +50,12 @@ class Search extends React.Component<Props, State> {
           value={this.state.searchString}
         />
         <button className={css.btn}>Search</button>
+        <button
+          className={css.btn + ' ' + css.btnred}
+          onClick={this.handleError}
+        >
+          Error
+        </button>
       </>
     )
   }

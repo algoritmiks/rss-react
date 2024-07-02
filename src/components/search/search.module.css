@@ -17,3 +17,7 @@
   width: 80px;
   font-size: 20px;
 }
+
+.btnred {
+  background-color: rgb(231, 141, 141);
+}
