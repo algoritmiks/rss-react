@@ -8,7 +8,7 @@ const api = axios.create({
   baseURL: BASE_URL,
 })
 
-export const getPeople = async (search: string): Promise<void> => {
+export const getPeople = async (search: string) => {
   const { data } = await api.get(`people?search=${search}`)
   return data
 }

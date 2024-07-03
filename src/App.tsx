@@ -12,7 +12,7 @@ class App extends React.Component {
     people: [] as IPeople[],
   }
 
-  getData = async (search: string): Promise<void> => {
+  getData = async (search: string) => {
     this.setState({ isLoading: true })
     const data = await getPeople(search)
     this.setState({ people: data.results, isLoading: false })
