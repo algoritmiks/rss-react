@@ -3,6 +3,7 @@ import './App.css'
 import ErrorBoundary from './components/errorBoundary/errorBoundary'
 import Search from './components/search/search'
 import Cards from './components/cards/cards'
+import Loader from './components/common/loader/loader'
 import { getPeople } from './api/api'
 import { IPeople } from './ts/types'
 
@@ -23,7 +24,11 @@ class App extends React.Component {
       <div className="container">
         <ErrorBoundary>
           <Search getData={this.getData} />
-          <Cards people={this.state.people} />
+          {this.state.isLoading ? (
+            <Loader />
+          ) : (
+            <Cards people={this.state.people} />
+          )}
         </ErrorBoundary>
       </div>
     )
