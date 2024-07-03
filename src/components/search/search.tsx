@@ -6,7 +6,9 @@ interface State {
   hasError: boolean
 }
 
-interface Props {}
+interface Props {
+  getData: (search: string) => void
+}
 
 class Search extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -15,21 +17,24 @@ class Search extends React.Component<Props, State> {
       searchString: '',
       hasError: false,
     }
-    this.handleSearchChange = this.handleSearchChange.bind(this)
   }
 
   componentDidMount(): void {
     const searchString = localStorage.getItem('searchString')
     if (searchString) {
       this.setState({ searchString })
-      //todo api request
     }
+    this.props.getData(searchString ? searchString : '')
   }
 
-  handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+  handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchString = e.target.value
     this.setState({ searchString })
     localStorage.setItem('searchString', searchString)
+  }
+
+  handleSearchClick = () => {
+    this.props.getData(this.state.searchString)
   }
 
   handleError = () => {
@@ -42,21 +47,23 @@ class Search extends React.Component<Props, State> {
     }
 
     return (
-      <>
+      <div className={css.search}>
         <input
           className={css.inp}
           placeholder="Search..."
           onChange={this.handleSearchChange}
           value={this.state.searchString}
         />
-        <button className={css.btn}>Search</button>
+        <button className={css.btn} onClick={this.handleSearchClick}>
+          Search
+        </button>
         <button
           className={css.btn + ' ' + css.btnred}
           onClick={this.handleError}
         >
           Error
         </button>
-      </>
+      </div>
     )
   }
 }

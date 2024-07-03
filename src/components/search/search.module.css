@@ -16,8 +16,14 @@
   padding: 5px;
   width: 80px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .btnred {
   background-color: rgb(231, 141, 141);
+}
+
+.search {
+  display: flex;
+  justify-content: center;
 }
