@@ -4,7 +4,7 @@ import ErrorBoundary from './components/errorBoundary/errorBoundary'
 import Search from './components/search/search'
 import Cards from './components/cards/cards'
 import Loader from './components/common/loader/loader'
-import { getPeople } from './api/api'
+import { fetchPeople } from './api/api'
 import { IPeople } from './ts/types'
 
 class App extends React.Component {
@@ -15,8 +15,8 @@ class App extends React.Component {
 
   getData = async (search: string) => {
     this.setState({ isLoading: true })
-    const data = await getPeople(search)
-    this.setState({ people: data.results, isLoading: false })
+    const data = await fetchPeople(search)
+    this.setState({ people: data, isLoading: false })
   }
 
   render() {

@@ -33,11 +33,11 @@ class Search extends React.Component<Props, State> {
     localStorage.setItem('searchString', searchString)
   }
 
-  handleSearchClick = () => {
+  handleSearchClick = (): void => {
     this.props.getData(this.state.searchString)
   }
 
-  handleError = () => {
+  handleError = (): void => {
     this.setState({ hasError: true })
   }
 
