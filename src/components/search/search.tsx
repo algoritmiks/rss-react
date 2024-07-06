@@ -28,12 +28,13 @@ class Search extends React.Component<Props, State> {
   }
 
   handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchString = e.target.value
-    this.setState({ searchString })
-    localStorage.setItem('searchString', searchString)
+    this.setState({ searchString: e.target.value })
   }
 
   handleSearchClick = (): void => {
+    const searchString = this.state.searchString.trim()
+    this.setState({ searchString })
+    localStorage.setItem('searchString', searchString)
     this.props.getData(this.state.searchString)
   }
 
