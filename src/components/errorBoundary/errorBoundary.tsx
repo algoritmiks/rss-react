@@ -1,4 +1,5 @@
 import React from 'react'
+import css from './errorBoundary.module.css'
 
 interface Props {
   children: React.ReactNode
@@ -25,7 +26,14 @@ class ErrorBoundary extends React.Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong</h1>
+      return (
+        <>
+          <h1>Something went wrong</h1>
+          <button className={css.btn} onClick={() => window.location.reload()}>
+            Reload
+          </button>
+        </>
+      )
     }
     return this.props.children
   }
