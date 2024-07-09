@@ -9,7 +9,7 @@ import { IPeople } from './ts/types'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true)
-  const [people, setPeople] = useState([] as IPeople[])
+  const [people, setPeople] = useState<IPeople[]>([])
 
   const getData = async (search: string) => {
     setIsLoading(true)

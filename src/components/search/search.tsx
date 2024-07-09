@@ -10,11 +10,11 @@ export const Search = ({ getData }: Props) => {
   const [searchString, setSearchString] = useState<string>('')
 
   useEffect(() => {
-    const searchString = localStorage.getItem('searchString')
-    if (searchString) {
-      setSearchString(searchString)
+    const searchLS = localStorage.getItem('searchString')
+    if (searchLS) {
+      setSearchString(searchLS)
     }
-    getData(searchString ? searchString : '')
+    getData(searchLS ? searchLS : '')
   }, [])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
