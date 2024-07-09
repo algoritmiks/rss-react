@@ -1,72 +1,44 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import css from './search.module.css'
-
-interface State {
-  searchString: string
-  hasError: boolean
-}
 
 interface Props {
   getData: (search: string) => void
 }
 
-class Search extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      searchString: '',
-      hasError: false,
-    }
-  }
+export const Search = ({ getData }: Props) => {
+  const [searchString, setSearchString] = useState<string>('')
 
-  componentDidMount(): void {
+  useEffect(() => {
     const searchString = localStorage.getItem('searchString')
     if (searchString) {
-      this.setState({ searchString })
+      setSearchString(searchString)
     }
-    this.props.getData(searchString ? searchString : '')
+    getData(searchString ? searchString : '')
+  }, [])
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchString(e.target.value)
   }
 
-  handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchString: e.target.value })
+  const handleSearchClick = (): void => {
+    const sString = searchString.trim()
+    setSearchString(sString)
+    localStorage.setItem('searchString', sString)
+    getData(sString)
   }
 
-  handleSearchClick = (): void => {
-    const searchString = this.state.searchString.trim()
-    this.setState({ searchString })
-    localStorage.setItem('searchString', searchString)
-    this.props.getData(this.state.searchString)
-  }
-
-  handleError = (): void => {
-    this.setState({ hasError: true })
-  }
-
-  render() {
-    if (this.state.hasError) {
-      throw new Error('Error occurred')
-    }
-
-    return (
-      <div className={css.search}>
-        <input
-          className={css.inp}
-          placeholder="Search..."
-          onChange={this.handleSearchChange}
-          value={this.state.searchString}
-        />
-        <button className={css.btn} onClick={this.handleSearchClick}>
-          Search
-        </button>
-        <button
-          className={css.btn + ' ' + css.btnred}
-          onClick={this.handleError}
-        >
-          Error
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div className={css.search}>
+      <input
+        className={css.inp}
+        placeholder="Search..."
+        onChange={handleSearchChange}
+        value={searchString}
+      />
+      <button className={css.btn} onClick={handleSearchClick}>
+        Search
+      </button>
+    </div>
+  )
 }
-
-export default Search

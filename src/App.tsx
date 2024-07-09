@@ -1,38 +1,31 @@
-import React from 'react'
+import { useState } from 'react'
 import './App.css'
 import ErrorBoundary from './components/errorBoundary/errorBoundary'
-import Search from './components/search/search'
-import Cards from './components/cards/cards'
+import { Search } from './components/search/search'
+import { Cards } from './components/cards/cards'
 import Loader from './components/common/loader/loader'
 import { fetchPeople } from './api/api'
 import { IPeople } from './ts/types'
 
-class App extends React.Component {
-  state = {
-    isLoading: true,
-    people: [] as IPeople[],
-  }
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [people, setPeople] = useState([] as IPeople[])
 
-  getData = async (search: string) => {
-    this.setState({ isLoading: true })
+  const getData = async (search: string) => {
+    setIsLoading(true)
     const data = await fetchPeople(search)
-    this.setState({ people: data, isLoading: false })
+    setPeople([...data])
+    setIsLoading(false)
   }
 
-  render() {
-    return (
-      <div className="container">
-        <ErrorBoundary>
-          <Search getData={this.getData} />
-          {this.state.isLoading ? (
-            <Loader />
-          ) : (
-            <Cards people={this.state.people} />
-          )}
-        </ErrorBoundary>
-      </div>
-    )
-  }
+  return (
+    <div className="container">
+      <ErrorBoundary>
+        <Search getData={getData} />
+        {isLoading ? <Loader /> : <Cards people={people} />}
+      </ErrorBoundary>
+    </div>
+  )
 }
 
 export default App
