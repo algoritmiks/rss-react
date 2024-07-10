@@ -7,6 +7,7 @@ export const Pagination: React.FC = () => {
   return (
     <div className={css.pagination}>
       <button
+        disabled={currentPage === 1}
         className={css.btn}
         onClick={() => setCurrentPage(currentPage - 1)}
       >
