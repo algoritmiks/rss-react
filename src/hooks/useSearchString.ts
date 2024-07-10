@@ -1,6 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useSearchString = () => {
   const [searchString, setSearchString] = useState<string>('')
-  return { searchString, setSearchString }
+  useEffect(() => {
+    const searchLS = localStorage.getItem('searchString')
+    if (searchLS) {
+      setSearchString(searchLS)
+    }
+    return () => {
+      localStorage.setItem('searchString', searchString)
+    }
+  }, [])
+
+  return searchString
 }

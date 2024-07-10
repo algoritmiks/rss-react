@@ -1,6 +1,6 @@
-export interface IPeople {
-  name: string
-  birth_year: string
-  height: string
-  url: string
+export interface IUser {
+  id: number
+  firstName: string
+  lastName: string
+  age: number
 }
