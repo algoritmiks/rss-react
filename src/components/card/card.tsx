@@ -1,7 +1,7 @@
 import { IPeople } from '../../ts/types'
 import css from './card.module.css'
 
-export const Card = ({ person }: { person: IPeople }) => {
+export const Card: React.FC<{ person: IPeople }> = ({ person }) => {
   return (
     <div className={css.card}>
       <div className={css.name}>{person.name}</div>

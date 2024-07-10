@@ -7,7 +7,7 @@ import Loader from './components/common/loader/loader'
 import { fetchPeople } from './api/api'
 import { IPeople } from './ts/types'
 
-const App = () => {
+const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [people, setPeople] = useState<IPeople[]>([])
 

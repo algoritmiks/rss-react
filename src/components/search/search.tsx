@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import css from './search.module.css'
 
@@ -6,7 +5,7 @@ interface Props {
   getData: (search: string) => void
 }
 
-export const Search = ({ getData }: Props) => {
+export const Search: React.FC<Props> = ({ getData }) => {
   const [searchString, setSearchString] = useState<string>('')
 
   useEffect(() => {
