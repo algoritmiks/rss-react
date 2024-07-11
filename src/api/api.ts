@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { IUser } from '../ts/types'
+import { IUser, IDetailedUser } from '../ts/types'
 
 const BASE_URL = 'https://dummyjson.com/'
 const LIMIT = 10
@@ -11,4 +11,9 @@ const api = axios.create({
 export const fetchUsers = async (search: string): Promise<IUser[]> => {
   const { data } = await api.get(`users/search?q=${search}&limit=${LIMIT}`)
   return data.users
+}
+
+export const fetchUser = async (userId: string): Promise<IDetailedUser> => {
+  const { data } = await api.get(`users/${userId}`)
+  return data
 }

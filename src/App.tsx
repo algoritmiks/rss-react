@@ -6,6 +6,7 @@ import { Cards } from './components/cards/cards'
 import Loader from './components/common/loader/loader'
 import { fetchUsers } from './api/api'
 import { IUser } from './ts/types'
+import { Outlet } from 'react-router-dom'
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -23,6 +24,7 @@ const App: React.FC = () => {
       <ErrorBoundary>
         <Search getData={getData} />
         {isLoading ? <Loader /> : <Cards users={users} />}
+        <Outlet />
       </ErrorBoundary>
     </div>
   )

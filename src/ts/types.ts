@@ -4,3 +4,8 @@ export interface IUser {
   lastName: string
   age: number
 }
+
+export interface IDetailedUser extends IUser {
+  username: string
+  email: string
+}

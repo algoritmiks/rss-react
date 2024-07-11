@@ -5,7 +5,7 @@ import css from './card.module.css'
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
   return (
     <div className={css.card}>
-      <Link className={css.link} to={`/user/${user.id}`}>
+      <Link className={css.link} to={`/user/${user.id}?search=test`}>
         <div className={css.info}>
           <div className={css.name}>
             {user.firstName} {user.lastName}
