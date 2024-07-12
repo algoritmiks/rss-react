@@ -10,9 +10,13 @@
 .name {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   font-size: 20px;
   font-weight: 600;
+}
+
+.nameContaner {
+  margin-bottom: 50px;
 }
 
 .link {
