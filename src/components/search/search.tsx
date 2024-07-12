@@ -23,39 +23,20 @@ export const Search: React.FC<Props> = ({
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
-    console.log('useEffect [] > ')
-    const searchLS = localStorage.getItem('searchString')
-    const searchParam = searchParams.get('search')
-    console.log('searchParam > ', searchParam)
     const pageParam = searchParams.get('page')
     if (pageParam) {
       setCurrentPage(Number(pageParam))
     }
-
-    let searchingFor
-    if (searchLS) {
-      setSearchString(searchLS)
-      searchingFor = searchLS
-    }
-    if (searchParam) {
-      setSearchString(searchParam)
-      searchingFor = searchParam
-    }
-    if (searchingFor) {
-      setSearchParams({ search: searchingFor })
-    }
     setSearchParams({
       page: currentPage.toString(),
-      search: searchingFor || '',
+      search: searchString,
     })
-    getData(searchingFor ? searchingFor : '', currentPage)
+    getData(searchString, currentPage)
   }, [])
 
   useEffect(() => {
-    console.log('useEffect [currentPage] searchString > ', searchString)
-
     setSearchParams({ page: currentPage.toString(), search: searchString })
-    getData(searchString ? searchString : '', currentPage)
+    getData(searchString, currentPage)
   }, [currentPage])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,13 +48,7 @@ export const Search: React.FC<Props> = ({
     setSearchString(sString)
     setCurrentPage(1)
     localStorage.setItem('searchString', sString)
-    // setSearchParams({ page: currentPage.toString(), search: searchString })
-    if (sString) {
-      setSearchParams({ search: sString })
-    } else {
-      searchParams.delete('search')
-      setSearchParams(searchParams)
-    }
+    setSearchParams({ page: currentPage.toString(), search: searchString })
     getData(sString, currentPage)
   }
 
