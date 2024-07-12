@@ -7,9 +7,6 @@ export const useSearchString = () => {
     if (searchLS) {
       setSearchString(searchLS)
     }
-    return () => {
-      localStorage.setItem('searchString', searchString)
-    }
   }, [])
 
   return searchString

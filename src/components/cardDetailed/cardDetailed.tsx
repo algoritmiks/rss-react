@@ -1,7 +1,7 @@
 import css from './cardDetailed.module.css'
 import { useEffect, useState } from 'react'
 import { fetchUser } from '../../api/api'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { IDetailedUser } from '../../ts/types'
 import { Spinner } from '../common/spinner/spinner'
 
@@ -19,8 +19,12 @@ export const CardDetailed: React.FC = () => {
     })
   }, [userId])
 
+  const [searchParams] = useSearchParams()
+  const searchParam = searchParams.get('search')
+  const pageParam = searchParams.get('page')
+
   const handleClose = () => {
-    navigate('/')
+    navigate(`/?page=${pageParam}&search=${searchParam}`)
   }
 
   return (
