@@ -54,15 +54,23 @@ export const Search: React.FC<Props> = ({
 
   return (
     <div className={css.search}>
-      <input
-        className={css.inp}
-        placeholder="Search..."
-        onChange={handleSearchChange}
-        value={searchString}
-      />
-      <button className={css.btn} onClick={handleSearchClick}>
-        Search
-      </button>
+      <form>
+        <input
+          id="input"
+          className={css.inp}
+          placeholder="Search..."
+          onChange={handleSearchChange}
+          value={searchString}
+        />
+        <button
+          className={css.btn}
+          onClick={handleSearchClick}
+          type="submit"
+          id="btn"
+        >
+          Search
+        </button>
+      </form>
       <Pagination
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
