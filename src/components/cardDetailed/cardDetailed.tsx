@@ -24,25 +24,28 @@ export const CardDetailed: React.FC = () => {
   }
 
   return (
-    <div className={css.cardDetailed}>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <div className={css.info}>
-            <div className={css.name}>
-              {user.firstName} {user.lastName}
+    <>
+      <div className={css.background} onClick={handleClose}></div>
+      <div className={css.cardDetailed}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className={css.info}>
+              <div className={css.name}>
+                {user.firstName} {user.lastName}
+              </div>
+              <p>Age: {user.age}</p>
+              <p>{user.email}</p>
+              <p>username: {user.username}</p>
             </div>
-            <p>Age: {user.age}</p>
-            <p>{user.email}</p>
-            <p>username: {user.username}</p>
-          </div>
 
-          <button className={css.btn} onClick={handleClose}>
-            Close
-          </button>
-        </>
-      )}
-    </div>
+            <button className={css.btn} onClick={handleClose}>
+              Close
+            </button>
+          </>
+        )}
+      </div>
+    </>
   )
 }

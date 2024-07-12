@@ -8,9 +8,13 @@ const api = axios.create({
   baseURL: BASE_URL,
 })
 
-export const fetchUsers = async (search: string): Promise<IUsersData> => {
-  const { data } = await api.get(`users/search?q=${search}&limit=${LIMIT}`)
-  console.log('data > ', data)
+export const fetchUsers = async (
+  search: string,
+  pageNumber: number,
+): Promise<IUsersData> => {
+  const { data } = await api.get(
+    `users/search?q=${search}&limit=${LIMIT}&skip=${(pageNumber - 1) * LIMIT}`,
+  )
   return data
 }
 
