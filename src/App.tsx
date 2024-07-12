@@ -36,7 +36,13 @@ const App: React.FC = () => {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-        {isLoading ? <Loader /> : <Cards users={users} />}
+        {isLoading ? (
+          <div className="loader">
+            <Loader />
+          </div>
+        ) : (
+          <Cards users={users} />
+        )}
         <Outlet />
       </ErrorBoundary>
     </div>

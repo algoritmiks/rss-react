@@ -1,8 +1,8 @@
 .cardDetailed {
   position: absolute;
   z-index: 1;
-  top: calc(100vh / 2 - 250px);
-  right: 10px;
+  top: calc(100vh / 2 - 290px);
+  right: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
