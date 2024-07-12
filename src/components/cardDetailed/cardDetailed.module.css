@@ -1,6 +1,7 @@
 .cardDetailed {
   position: absolute;
-  top: transform translate 50%;
+  /* top: transform translate 50%; */
+  top: calc(100vh / 2 - 250px);
   right: 10px;
   display: flex;
   flex-direction: column;

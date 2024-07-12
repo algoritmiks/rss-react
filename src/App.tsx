@@ -11,18 +11,20 @@ import { Outlet } from 'react-router-dom'
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [users, setPeople] = useState<IUser[]>([])
+  const [totalUsers, setTotalUsers] = useState(0)
 
   const getData = async (search: string) => {
     setIsLoading(true)
     const data = await fetchUsers(search)
-    setPeople([...data])
+    setPeople(data.users)
+    setTotalUsers(data.total)
     setIsLoading(false)
   }
 
   return (
     <div className="container">
       <ErrorBoundary>
-        <Search getData={getData} />
+        <Search getData={getData} totalUsers={totalUsers} />
         {isLoading ? <Loader /> : <Cards users={users} />}
         <Outlet />
       </ErrorBoundary>

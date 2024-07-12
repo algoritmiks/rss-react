@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { Pagination } from '../pagination/pagination'
 import css from './search.module.css'
 
 interface Props {
   getData: (search: string) => void
+  totalUsers: number
 }
 
-export const Search: React.FC<Props> = ({ getData }) => {
+export const Search: React.FC<Props> = ({ getData, totalUsers }) => {
   const [searchString, setSearchString] = useState<string>('')
   const [searchParams, setSearchParams] = useSearchParams()
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const searchLS = localStorage.getItem('searchString')
@@ -56,6 +59,11 @@ export const Search: React.FC<Props> = ({ getData }) => {
       <button className={css.btn} onClick={handleSearchClick}>
         Search
       </button>
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        totalUsers={totalUsers}
+      />
     </div>
   )
 }

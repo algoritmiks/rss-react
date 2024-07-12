@@ -1,9 +1,18 @@
-import { useState } from 'react'
 import css from './pagination.module.css'
+import { LIMIT } from '../../api/api'
 
-export const Pagination: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+type Props = {
+  setCurrentPage: (page: number) => void
+  currentPage: number
+  totalUsers: number
+}
 
+export const Pagination: React.FC<Props> = ({
+  currentPage,
+  setCurrentPage,
+  totalUsers,
+}) => {
+  console.log('totalUsers > ', totalUsers)
   return (
     <div className={css.pagination}>
       <button
@@ -15,6 +24,7 @@ export const Pagination: React.FC = () => {
       </button>
       <div className={css.currentPage}>{currentPage}</div>
       <button
+        disabled={currentPage === Math.ceil(totalUsers / LIMIT)}
         className={css.btn}
         onClick={() => setCurrentPage(currentPage + 1)}
       >

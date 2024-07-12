@@ -1,6 +1,5 @@
 import css from './cards.module.css'
 import { Card } from '../card/card'
-import { Pagination } from '../pagination/pagination'
 import { IUser } from '../../ts/types'
 
 export const Cards: React.FC<{ users: IUser[] }> = ({ users }) => {
@@ -11,7 +10,6 @@ export const Cards: React.FC<{ users: IUser[] }> = ({ users }) => {
           return <Card key={user.id} user={user} />
         })}
       </div>
-      <Pagination />
     </>
   )
 }
