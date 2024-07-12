@@ -19,8 +19,11 @@ const App: React.FC = () => {
   const getData = async (search: string, pageNumber: number) => {
     setIsLoading(true)
     const data = await fetchUsers(search, pageNumber)
-    setPeople(data.users)
     setTotalPages(Math.ceil(data.total / LIMIT))
+    if (data.skip > data.total) {
+      setCurrentPage(1)
+    }
+    setPeople(data.users)
     setIsLoading(false)
   }
 
