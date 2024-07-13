@@ -3,6 +3,10 @@ import { Card } from '../card/card'
 import { IUser } from '../../ts/types'
 
 export const Cards: React.FC<{ users: IUser[] }> = ({ users }) => {
+  if (users.length === 0) {
+    return <h1>No users found</h1>
+  }
+
   return (
     <>
       <div className={css.cards}>
