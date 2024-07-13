@@ -71,11 +71,13 @@ export const Search: React.FC<Props> = ({
           Search
         </button>
       </form>
-      <Pagination
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-        totalPages={totalPages}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      )}
     </div>
   )
 }
