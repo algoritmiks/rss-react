@@ -43,7 +43,8 @@ export const Search: React.FC<Props> = ({
     setSearchString(e.target.value)
   }
 
-  const handleSearchClick = (): void => {
+  const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault()
     const sString = searchString.trim()
     setSearchString(sString)
     setCurrentPage(1)
