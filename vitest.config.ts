@@ -1,4 +1,4 @@
-import { defineConfig, mergeConfig } from 'vitest/config'
+import { defineConfig, mergeConfig, configDefaults } from 'vitest/config'
 import viteConfig from './vite.config.ts'
 
 export default mergeConfig(
@@ -7,6 +7,16 @@ export default mergeConfig(
     test: {
       environment: 'jsdom',
       globals: true,
+      coverage: {
+        exclude: [
+          ...configDefaults.exclude,
+          'src/main.tsx',
+          '.eslintrc.cjs',
+          'src/hooks',
+          'src/components/errorPage',
+          'src/components/errorBoundary',
+        ],
+      },
     },
   }),
 )
