@@ -12,7 +12,6 @@ export default mergeConfig(
           ...configDefaults.exclude,
           'src/main.tsx',
           '.eslintrc.cjs',
-          'src/hooks',
           'src/components/errorPage',
           'src/components/errorBoundary',
         ],
