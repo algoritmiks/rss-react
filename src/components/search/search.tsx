@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Pagination } from '../pagination/pagination'
-import { getSearchStringOnLoading } from '../../helpers/getSearchStringOnLoading'
 import css from './search.module.css'
+import { useSearchString } from '../../hooks/useSearchString'
 
 interface Props {
   getData: (search: string, pageNumber: number) => void
@@ -17,9 +17,7 @@ export const Search: React.FC<Props> = ({
   currentPage,
   setCurrentPage,
 }) => {
-  const [searchString, setSearchString] = useState<string>(
-    getSearchStringOnLoading,
-  )
+  const [searchString, setSearchString] = useSearchString()
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {

@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { getSearchStringOnLoading } from '../helpers/getSearchStringOnLoading'
+export const useSearchString = (): [
+  string,
+  React.Dispatch<React.SetStateAction<string>>,
+] => {
+  const [searchString, setSearchString] = useState<string>(
+    getSearchStringOnLoading,
+  )
 
-export const useSearchString = () => {
-  const [searchString, setSearchString] = useState<string>('')
-  useEffect(() => {
-    const searchLS = localStorage.getItem('searchString')
-    if (searchLS) {
-      setSearchString(searchLS)
-    }
-  }, [])
-
-  return searchString
+  return [searchString, setSearchString]
 }
