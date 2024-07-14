@@ -1,4 +1,4 @@
-export const getPageFromUrl = () => {
+export const getPageFromUrl = (): number => {
   const url = new URLSearchParams(window.location.search)
   const page = url.get('page')
   if (page) {
