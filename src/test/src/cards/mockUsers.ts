@@ -1,0 +1,36 @@
+export const mockUsers = [
+  {
+    id: 1,
+    firstName: 'Emily',
+    lastName: 'Johnson',
+    maidenName: 'Smith',
+    age: 28,
+  },
+  {
+    id: 2,
+    firstName: 'Michael',
+    lastName: 'Williams',
+    maidenName: '',
+    age: 35,
+  },
+  { id: 3, firstName: 'Sophia', lastName: 'Brown', maidenName: '', age: 42 },
+  { id: 4, firstName: 'James', lastName: 'Davis', maidenName: '', age: 45 },
+  {
+    id: 5,
+    firstName: 'Emma',
+    lastName: 'Miller',
+    maidenName: 'Johnson',
+    age: 30,
+  },
+  { id: 6, firstName: 'Olivia', lastName: 'Wilson', maidenName: '', age: 22 },
+  { id: 7, firstName: 'Alexander', lastName: 'Jones', maidenName: '', age: 38 },
+  { id: 8, firstName: 'Ava', lastName: 'Taylor', maidenName: '', age: 27 },
+  { id: 9, firstName: 'Ethan', lastName: 'Martinez', maidenName: '', age: 33 },
+  {
+    id: 10,
+    firstName: 'Isabella',
+    lastName: 'Anderson',
+    maidenName: 'Davis',
+    age: 31,
+  },
+]

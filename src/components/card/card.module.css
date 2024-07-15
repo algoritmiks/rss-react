@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  border: 1px solid rgb(184, 184, 184);
+  width: 200px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 15px;
+  z-index: 1;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.nameContaner {
+  margin-bottom: 50px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.info {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
