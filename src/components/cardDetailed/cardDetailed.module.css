@@ -51,6 +51,16 @@
   cursor: pointer;
 }
 
+.darkbtn {
+  color: var(--dark-theme-font-color);
+  background-color: var(--dark-theme-background-btn-color);
+}
+
+.darkTheme {
+  color: var(--dark-theme-font-color);
+  border-color: var(--dark-theme-font-color);
+}
+
 .background {
   position: fixed;
   left: 0;

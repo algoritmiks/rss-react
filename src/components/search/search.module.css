@@ -19,6 +19,11 @@
   cursor: pointer;
 }
 
+.darkbtn {
+  color: var(--dark-theme-font-color);
+  background-color: var(--dark-theme-background-btn-color);
+}
+
 .search {
   display: flex;
   justify-content: center;

@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Pagination } from '../pagination/pagination'
 import css from './search.module.css'
 import { useSearchString } from '../../hooks/useSearchString'
+import { ThemeContext } from '../../App'
 
 interface Props {
   getData: (search: string, pageNumber: number) => void
@@ -19,6 +20,7 @@ export const Search: React.FC<Props> = ({
 }) => {
   const [searchString, setSearchString] = useSearchString()
   const [searchParams, setSearchParams] = useSearchParams()
+  const isThemeDark = useContext(ThemeContext)
 
   useEffect(() => {
     const pageParam = searchParams.get('page')
@@ -62,7 +64,7 @@ export const Search: React.FC<Props> = ({
           value={searchString}
         />
         <button
-          className={css.btn}
+          className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
           onClick={handleSearchClick}
           type="submit"
           id="btn"

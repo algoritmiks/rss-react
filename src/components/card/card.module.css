@@ -30,6 +30,11 @@
   color: black;
 }
 
+.darkTheme {
+  color: var(--dark-theme-font-color);
+  border-color: var(--dark-theme-font-color);
+}
+
 .info {
   width: 100%;
   height: 100%;

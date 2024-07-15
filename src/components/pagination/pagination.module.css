@@ -17,6 +17,11 @@
   cursor: pointer;
 }
 
+.darkbtn {
+  color: var(--dark-theme-font-color);
+  background-color: var(--dark-theme-background-btn-color);
+}
+
 .currentPage {
   display: flex;
   justify-content: center;
