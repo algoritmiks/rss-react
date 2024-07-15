@@ -22,6 +22,11 @@
   background-color: var(--dark-theme-background-btn-color);
 }
 
+.darkbtn:disabled {
+  color: #7a7a7a;
+  background-color: #c0c0c0;
+}
+
 .currentPage {
   display: flex;
   justify-content: center;
