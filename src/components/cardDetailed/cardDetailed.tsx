@@ -1,27 +1,19 @@
-import { useEffect, useState, useContext } from 'react'
-import { fetchUser } from '../../api/api'
+import { useContext } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { IDetailedUser } from '../../ts/types'
 import { Spinner } from '../common/spinner/spinner'
 import { ThemeContext } from '../../App'
+import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC = () => {
-  const [user, setUser] = useState<IDetailedUser>({} as IDetailedUser)
-  const [isLoading, setIsLoading] = useState(true)
   const { userId } = useParams()
+  const { data: user, isLoading } = userApi.useFetchDetailedUserQuery(
+    userId as string,
+  )
   const navigate = useNavigate()
   const isThemeDark = useContext(ThemeContext)
-
-  useEffect(() => {
-    setIsLoading(true)
-    fetchUser(userId as string).then((data) => {
-      setUser(data)
-      setIsLoading(false)
-    })
-  }, [userId])
-
   const [searchParams] = useSearchParams()
+
   const searchParam = searchParams.get('search')
   const pageParam = searchParams.get('page')
 
@@ -35,9 +27,8 @@ export const CardDetailed: React.FC = () => {
       <div
         className={css.cardDetailed + ' ' + (isThemeDark ? css.darkTheme : '')}
       >
-        {isLoading ? (
-          <Spinner />
-        ) : (
+        {isLoading && <Spinner />}
+        {user && (
           <>
             <div className={css.info}>
               <div className={css.name}>
