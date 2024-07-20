@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL, LIMIT } from '../api/api'
+import { BASE_URL, LIMIT } from '../constants.ts/constants'
 import { IDetailedUser, IUsersData } from '../ts/types'
 
 export const userApi = createApi({
