@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { ThemeContext } from '../../App'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
+import { ThemeContext } from '../../App'
 import { setPage } from '../../store/reducers/pagination'
 import { RootState } from '../../store/store'
 

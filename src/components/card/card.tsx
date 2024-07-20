@@ -1,9 +1,8 @@
-import { IUser } from '../../ts/types'
-import { Link } from 'react-router-dom'
-import css from './card.module.css'
-import { useSearchParams } from 'react-router-dom'
 import { useContext } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { IUser } from '../../ts/types'
 import { ThemeContext } from '../../App'
+import css from './card.module.css'
 
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
   const [searchParams] = useSearchParams()

@@ -1,13 +1,13 @@
-import css from './cards.module.css'
-import { Card } from '../card/card'
-import { IUser } from '../../ts/types'
-import { userApi } from '../../services/userService'
-import { useSelector, useDispatch } from 'react-redux'
-import { LIMIT } from '../../constants/constants'
-import { setTotalPages } from '../../store/reducers/pagination'
-import { RootState } from '../../store/store'
-import Loader from '../common/loader/loader'
 import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Card } from '../card/card'
+import { RootState } from '../../store/store'
+import { setTotalPages } from '../../store/reducers/pagination'
+import { userApi } from '../../services/userService'
+import Loader from '../common/loader/loader'
+import { LIMIT } from '../../constants/constants'
+import { IUser } from '../../ts/types'
+import css from './cards.module.css'
 
 export const Cards: React.FC = () => {
   const dispatch = useDispatch()

@@ -1,9 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'
-import { useDispatch } from 'react-redux'
 import { ThemeContext } from '../../App'
 import { useSearchString } from '../../hooks/useSearchString'
 import { Pagination } from '../pagination/pagination'
@@ -12,11 +11,9 @@ import css from './search.module.css'
 
 export const Search: React.FC = () => {
   const [searchStringLocal, setSearchStringLocal] = useSearchString()
-  // const [_, setSearchParams] = useSearchParams()
-  const [, setSearchParams] = useSearchParams()
-
   const dispatch = useDispatch()
   const isThemeDark = useContext(ThemeContext)
+  const [, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     if (searchStringLocal) {

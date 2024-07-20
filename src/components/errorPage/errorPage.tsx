@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { useRouteError } from 'react-router-dom'
+import { Link, useRouteError } from 'react-router-dom'
 import css from './errorPage.module.css'
 
 interface err {

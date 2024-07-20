@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState, createContext } from 'react'
+import { Outlet } from 'react-router-dom'
 import ErrorBoundary from './components/errorBoundary/errorBoundary'
 import { Search } from './components/search/search'
 import { Cards } from './components/cards/cards'
-import { Outlet } from 'react-router-dom'
-import { createContext } from 'react'
+import './App.css'
 
 export const ThemeContext = createContext(true)
 
