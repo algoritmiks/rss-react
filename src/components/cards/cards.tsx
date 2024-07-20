@@ -6,34 +6,32 @@ import { useSelector, useDispatch } from 'react-redux'
 import { LIMIT } from '../../api/api'
 import { setTotalPages } from '../../store/reducers/pagination'
 import { RootState } from '../../store/store'
+import Loader from '../common/loader/loader'
+import { useEffect } from 'react'
 
-export const Cards: React.FC<{ users: IUser[] }> = ({ users }) => {
-  const pagination = useSelector((state: RootState) => state.pagination.page)
-  console.log('cards.tsx pagination > ', pagination)
-
+export const Cards: React.FC = () => {
   const dispatch = useDispatch()
+  const pagination = useSelector((state: RootState) => state.pagination)
+  const searchString = useSelector(
+    (state: RootState) => state.search.searchString,
+  )
   const { data, isLoading } = userApi.useFetchUsersQuery({
-    skip: 0,
-    search: '',
+    skip: (pagination.page - 1) * LIMIT,
+    search: searchString,
   })
 
-  if (data) {
-    dispatch(setTotalPages({ totalPages: Math.ceil(data.total / LIMIT) }))
-  }
-  console.log('cards.tsx data > ', data)
-
-  if (isLoading) {
-    return <h1>Loading...</h1>
-  }
-
-  if (users.length === 0) {
-    return <h1>No users found</h1>
-  }
+  useEffect(() => {
+    if (data) {
+      dispatch(setTotalPages({ totalPages: Math.ceil(data.total / LIMIT) }))
+    }
+  }, [data])
 
   return (
     <>
+      {isLoading && <Loader />}
+      {data?.users.length === 0 && <h1>No users found</h1>}
       <div className={css.cards}>
-        {users.map((user: IUser) => {
+        {data?.users.map((user: IUser) => {
           return <Card key={user.id} user={user} />
         })}
       </div>

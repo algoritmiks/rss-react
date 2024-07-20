@@ -1,17 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getPageFromUrl } from '../../helpers/getPageFromURL'
 
 export interface IPaginationState {
   page: number
   totalPages: number
-  skip: number
 }
 
 export const paginationSlice = createSlice({
   name: 'pagination',
   initialState: <IPaginationState>{
-    page: 1,
+    page: getPageFromUrl(),
     totalPages: 1,
-    skip: 0,
   },
   reducers: {
     setPage: (state, action: PayloadAction<{ page: number }>) => {

@@ -1,56 +1,42 @@
-import { useEffect, useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Pagination } from '../pagination/pagination'
-import css from './search.module.css'
-import { useSearchString } from '../../hooks/useSearchString'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
+import { setSearchString } from '../../store/reducers/search'
+import { useDispatch } from 'react-redux'
 import { ThemeContext } from '../../App'
+import { useSearchString } from '../../hooks/useSearchString'
+import { Pagination } from '../pagination/pagination'
+import { setPage } from '../../store/reducers/pagination'
+import css from './search.module.css'
 
-interface Props {
-  getData: (search: string, pageNumber: number) => void
-  totalPages: number
-  setCurrentPage: (page: number) => void
-  currentPage: number
-}
+export const Search: React.FC = () => {
+  const [searchStringLocal, setSearchStringLocal] = useSearchString()
+  // const [_, setSearchParams] = useSearchParams()
+  const [, setSearchParams] = useSearchParams()
 
-export const Search: React.FC<Props> = ({
-  getData,
-  totalPages,
-  currentPage,
-  setCurrentPage,
-}) => {
-  const [searchString, setSearchString] = useSearchString()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const dispatch = useDispatch()
   const isThemeDark = useContext(ThemeContext)
 
   useEffect(() => {
-    const pageParam = searchParams.get('page')
-    if (pageParam) {
-      setCurrentPage(Number(pageParam))
+    if (searchStringLocal) {
+      setSearchParams({ page: '1', search: searchStringLocal })
     }
-    setSearchParams({
-      page: currentPage.toString(),
-      search: searchString,
-    })
-    getData(searchString, currentPage)
   }, [])
 
-  useEffect(() => {
-    setSearchParams({ page: currentPage.toString(), search: searchString })
-    getData(searchString, currentPage)
-  }, [currentPage])
+  const { totalPages } = useSelector((state: RootState) => state.pagination)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchString(e.target.value)
+    setSearchStringLocal(e.target.value)
   }
 
   const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault()
-    const sString = searchString.trim()
-    setSearchString(sString)
-    setCurrentPage(1)
+    const sString = searchStringLocal.trim()
     localStorage.setItem('searchString', sString)
-    setSearchParams({ page: currentPage.toString(), search: searchString })
-    getData(sString, currentPage)
+    setSearchParams({ page: '1', search: sString })
+    dispatch(setSearchString({ searchString: sString }))
+    dispatch(setPage({ page: 1 }))
   }
 
   return (
@@ -61,7 +47,7 @@ export const Search: React.FC<Props> = ({
           className={css.inp}
           placeholder="Search..."
           onChange={handleSearchChange}
-          value={searchString}
+          value={searchStringLocal}
         />
         <button
           className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
@@ -72,13 +58,7 @@ export const Search: React.FC<Props> = ({
           Search
         </button>
       </form>
-      {totalPages > 1 && (
-        <Pagination
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
-      )}
+      {totalPages > 1 && <Pagination />}
     </div>
   )
 }

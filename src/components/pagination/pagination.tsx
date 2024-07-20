@@ -1,24 +1,25 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ThemeContext } from '../../App'
 import { useSelector, useDispatch } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { setPage } from '../../store/reducers/pagination'
 import { RootState } from '../../store/store'
+
 import css from './pagination.module.css'
 
-type Props = {
-  setCurrentPage: (page: number) => void
-  currentPage: number
-  totalPages: number
-}
-
-export const Pagination: React.FC<Props> = ({
-  currentPage,
-  setCurrentPage,
-  totalPages,
-}) => {
-  const isThemeDark = useContext(ThemeContext)
-  const page = useSelector((state: RootState) => state.pagination.page)
+export const Pagination: React.FC = () => {
   const dispatch = useDispatch()
+  const [, setSearchParams] = useSearchParams()
+  const { page, totalPages } = useSelector(
+    (state: RootState) => state.pagination,
+  )
+  const { searchString } = useSelector((state: RootState) => state.search)
+
+  useEffect(() => {
+    setSearchParams({ page: String(page), search: searchString })
+  }, [page])
+
+  const isThemeDark = useContext(ThemeContext)
 
   return (
     <div className={css.pagination}>
@@ -26,7 +27,6 @@ export const Pagination: React.FC<Props> = ({
         disabled={page === 1}
         className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
         onClick={() => {
-          setCurrentPage(currentPage - 1)
           dispatch(setPage({ page: page - 1 }))
         }}
       >
@@ -34,10 +34,9 @@ export const Pagination: React.FC<Props> = ({
       </button>
       <div className={css.currentPage}>{page}</div>
       <button
-        disabled={currentPage === totalPages}
+        disabled={page === totalPages}
         className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
         onClick={() => {
-          setCurrentPage(currentPage + 1)
           dispatch(setPage({ page: page + 1 }))
         }}
       >
