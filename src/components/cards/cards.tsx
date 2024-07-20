@@ -15,7 +15,7 @@ export const Cards: React.FC = () => {
   const searchString = useSelector(
     (state: RootState) => state.search.searchString,
   )
-  const { data, isLoading } = userApi.useFetchUsersQuery({
+  const { data, isLoading, isFetching } = userApi.useFetchUsersQuery({
     skip: (pagination.page - 1) * LIMIT,
     search: searchString,
   })
@@ -28,12 +28,19 @@ export const Cards: React.FC = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
       {data?.users.length === 0 && <h1>No users found</h1>}
       <div className={css.cards}>
-        {data?.users.map((user: IUser) => {
-          return <Card key={user.id} user={user} />
-        })}
+        {isLoading || isFetching ? (
+          <Loader />
+        ) : (
+          data && (
+            <>
+              {data.users.map((user: IUser) => {
+                return <Card key={user.id} user={user} />
+              })}
+            </>
+          )
+        )}
       </div>
     </>
   )
