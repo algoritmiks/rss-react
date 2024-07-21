@@ -10,7 +10,7 @@ export const ThemeContext = createContext<IThemeContext>({
   setThemeIsDark: () => true,
 })
 
-const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isThemeDark, setThemeIsDark] = useState<boolean>(false)
 
   useEffect(() => {
@@ -23,5 +23,3 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     </ThemeContext.Provider>
   )
 }
-
-export default ThemeProvider
