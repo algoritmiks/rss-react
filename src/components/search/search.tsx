@@ -1,9 +1,8 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'
-import { ThemeContext } from '../../App'
 import { useSearchString } from '../../hooks/useSearchString'
 import { Pagination } from '../pagination/pagination'
 import { setPage } from '../../store/reducers/pagination'
@@ -12,7 +11,6 @@ import css from './search.module.css'
 export const Search: React.FC = () => {
   const [searchStringLocal, setSearchStringLocal] = useSearchString()
   const dispatch = useDispatch()
-  const isThemeDark = useContext(ThemeContext)
   const [, setSearchParams] = useSearchParams()
 
   useEffect(() => {
@@ -47,7 +45,7 @@ export const Search: React.FC = () => {
           value={searchStringLocal}
         />
         <button
-          className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
+          className={css.btn}
           onClick={handleSearchClick}
           type="submit"
           id="btn"

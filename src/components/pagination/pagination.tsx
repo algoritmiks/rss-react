@@ -1,7 +1,6 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { ThemeContext } from '../../App'
 import { setPage } from '../../store/reducers/pagination'
 import { RootState } from '../../store/store'
 
@@ -19,13 +18,11 @@ export const Pagination: React.FC = () => {
     setSearchParams({ page: String(page), search: searchString })
   }, [page])
 
-  const isThemeDark = useContext(ThemeContext)
-
   return (
     <div className={css.pagination}>
       <button
         disabled={page === 1}
-        className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
+        className={css.btn}
         onClick={() => {
           dispatch(setPage({ page: page - 1 }))
         }}
@@ -35,7 +32,7 @@ export const Pagination: React.FC = () => {
       <div className={css.currentPage}>{page}</div>
       <button
         disabled={page === totalPages}
-        className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
+        className={css.btn}
         onClick={() => {
           dispatch(setPage({ page: page + 1 }))
         }}

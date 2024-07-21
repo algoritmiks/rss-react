@@ -1,7 +1,5 @@
-import { useContext } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Spinner } from '../common/spinner/spinner'
-import { ThemeContext } from '../../App'
 import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'
 
@@ -13,7 +11,6 @@ export const CardDetailed: React.FC = () => {
     isFetching,
   } = userApi.useFetchDetailedUserQuery(userId as string)
   const navigate = useNavigate()
-  const isThemeDark = useContext(ThemeContext)
   const [searchParams] = useSearchParams()
 
   const searchParam = searchParams.get('search')
@@ -26,9 +23,7 @@ export const CardDetailed: React.FC = () => {
   return (
     <>
       <div className={css.background} onClick={handleClose}></div>
-      <div
-        className={css.cardDetailed + ' ' + (isThemeDark ? css.darkTheme : '')}
-      >
+      <div className={css.cardDetailed}>
         {isLoading || isFetching ? (
           <Spinner />
         ) : (
@@ -43,10 +38,7 @@ export const CardDetailed: React.FC = () => {
                 <p>username: {user.username}</p>
               </div>
 
-              <button
-                className={css.btn + ' ' + (isThemeDark ? css.darkbtn : '')}
-                onClick={handleClose}
-              >
+              <button className={css.btn} onClick={handleClose}>
                 Close
               </button>
             </>

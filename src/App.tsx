@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <div className="container">
         <ErrorBoundary>
           <button
-            className={isThemeDark ? 'btn darkbtn' : 'btn'}
+            className={'btn'}
             onClick={() => setThemeIsDark(!isThemeDark)}
           >
             {isThemeDark ? 'Light' : 'Dark'}

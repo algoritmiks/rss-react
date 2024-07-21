@@ -1,5 +1,5 @@
 .inp {
-  border: 1px solid rgb(184, 184, 184);
+  border: 1px solid var(--border-color);
   height: 30px;
   border-radius: 15px;
   padding: 5px;
@@ -10,18 +10,15 @@
 
 .btn {
   margin-left: 5px;
-  border: 1px solid rgb(184, 184, 184);
-  height: 40px;
+  border: 1px solid var(--btn-border-color);
+  color: var(--btn-text-color);
+  background-color: var(--btn-background-color);
   border-radius: 15px;
+  height: 40px;
   padding: 5px;
   width: 80px;
   font-size: 20px;
   cursor: pointer;
-}
-
-.darkbtn {
-  color: var(--dark-theme-font-color);
-  background-color: var(--dark-theme-background-btn-color);
 }
 
 .search {
