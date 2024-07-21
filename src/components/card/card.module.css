@@ -42,7 +42,8 @@
 
 .checkbox {
   position: relative;
-  top: -70px;
-  left: 65px;
+  top: -60px;
+  left: 67px;
   z-index: 1;
+  color: var(--text-color);
 }
