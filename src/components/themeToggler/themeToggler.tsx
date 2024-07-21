@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import { ThemeContext } from '../../App'
+import { ThemeContext } from '../../providers/themeProvider'
 
 export const ThemeToggler: React.FC = () => {
-  const { setThemeIsDark, isThemeDark } = useContext(ThemeContext)
+  const { isThemeDark, setThemeIsDark } = useContext(ThemeContext)
 
   return (
     <button className={'btn'} onClick={() => setThemeIsDark(!isThemeDark)}>

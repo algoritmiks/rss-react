@@ -28,7 +28,9 @@ export const Cards: React.FC = () => {
 
   return (
     <>
-      {data?.users.length === 0 && <h1>No users found</h1>}
+      {data?.users.length === 0 && (
+        <h1 className={css.notFound}>No users found</h1>
+      )}
       <div className={css.cards}>
         {isLoading || isFetching ? (
           <Loader />

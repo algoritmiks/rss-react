@@ -6,3 +6,7 @@
   height: 700px;
   align-items: center;
 }
+
+.notFound {
+  color: var(--text-color);
+}
