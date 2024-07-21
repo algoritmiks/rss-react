@@ -3,9 +3,18 @@ import { Outlet } from 'react-router-dom'
 import ErrorBoundary from './components/errorBoundary/errorBoundary'
 import { Search } from './components/search/search'
 import { Cards } from './components/cards/cards'
+import { ThemeToggler } from './components/themeToggler/themeToggler'
 import './App.css'
 
-export const ThemeContext = createContext(true)
+interface IThemeContext {
+  isThemeDark: boolean
+  setThemeIsDark: (value: boolean) => void
+}
+
+export const ThemeContext = createContext<IThemeContext>({
+  isThemeDark: true,
+  setThemeIsDark: () => true,
+})
 
 const App: React.FC = () => {
   const [isThemeDark, setThemeIsDark] = useState<boolean>(false)
@@ -15,15 +24,10 @@ const App: React.FC = () => {
   }, [isThemeDark])
 
   return (
-    <ThemeContext.Provider value={isThemeDark}>
+    <ThemeContext.Provider value={{ isThemeDark, setThemeIsDark }}>
       <div className="container">
         <ErrorBoundary>
-          <button
-            className={'btn'}
-            onClick={() => setThemeIsDark(!isThemeDark)}
-          >
-            {isThemeDark ? 'Light' : 'Dark'}
-          </button>
+          <ThemeToggler />
           <Search />
           <Cards />
           <Outlet />
