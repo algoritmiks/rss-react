@@ -10,7 +10,9 @@ export const ThemeContext = createContext<IThemeContext>({
   setThemeIsDark: () => true,
 })
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [isThemeDark, setThemeIsDark] = useState<boolean>(false)
 
   useEffect(() => {

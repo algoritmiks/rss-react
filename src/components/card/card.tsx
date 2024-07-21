@@ -21,6 +21,10 @@ export const Card: React.FC<{ user: IUser }> = ({ user }) => {
           <p>Age: {user.age}</p>
         </div>
       </Link>
+      <label className={css.checkbox}>
+        <input type="checkbox" />
+        select
+      </label>
     </div>
   )
 }
