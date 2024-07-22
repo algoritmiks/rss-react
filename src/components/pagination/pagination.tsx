@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { setPage } from '../../store/reducers/pagination'
-import { RootState } from '../../store/store'
+import { TRootState } from '../../store/store'
 
 import css from './pagination.module.css'
 
@@ -10,9 +10,9 @@ export const Pagination: React.FC = () => {
   const dispatch = useDispatch()
   const [, setSearchParams] = useSearchParams()
   const { page, totalPages } = useSelector(
-    (state: RootState) => state.pagination,
+    (state: TRootState) => state.pagination,
   )
-  const { searchString } = useSelector((state: RootState) => state.search)
+  const { searchString } = useSelector((state: TRootState) => state.search)
 
   useEffect(() => {
     setSearchParams({ page: String(page), search: searchString })

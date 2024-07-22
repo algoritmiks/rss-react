@@ -2,12 +2,12 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { IDetailedUser, IUser } from '../../ts/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, removeUser } from '../../store/reducers/users'
-import { RootState } from '../../store/store'
+import { TRootState } from '../../store/store'
 import css from './card.module.css'
 
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
   const dispatch = useDispatch()
-  const selectedUsers = useSelector((state: RootState) => state.users)
+  const selectedUsers = useSelector((state: TRootState) => state.users)
   const [searchParams] = useSearchParams()
   const searchParam = searchParams.get('search')
   const pageParam = searchParams.get('page')

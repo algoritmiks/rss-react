@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Card } from '../card/card'
-import { RootState } from '../../store/store'
+import { TRootState } from '../../store/store'
 import { setTotalPages } from '../../store/reducers/pagination'
 import { userApi } from '../../services/userService'
 import Loader from '../common/loader/loader'
@@ -11,9 +11,9 @@ import css from './cards.module.css'
 
 export const Cards: React.FC = () => {
   const dispatch = useDispatch()
-  const pagination = useSelector((state: RootState) => state.pagination)
+  const pagination = useSelector((state: TRootState) => state.pagination)
   const searchString = useSelector(
-    (state: RootState) => state.search.searchString,
+    (state: TRootState) => state.search.searchString,
   )
   const { data, isLoading, isFetching } = userApi.useFetchUsersQuery({
     skip: (pagination.page - 1) * LIMIT,

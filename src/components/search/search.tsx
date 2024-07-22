@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../store/store'
+import { TRootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'
 import { useSearchString } from '../../hooks/useSearchString'
 import { Pagination } from '../pagination/pagination'
@@ -19,7 +19,7 @@ export const Search: React.FC = () => {
     }
   }, [])
 
-  const { totalPages } = useSelector((state: RootState) => state.pagination)
+  const { totalPages } = useSelector((state: TRootState) => state.pagination)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchStringLocal(e.target.value)

@@ -37,27 +37,3 @@ body.dark {
   padding-top: 40px;
   flex-direction: column;
 }
-
-.loader {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.btn {
-  position: absolute;
-  right: 50px;
-  top: 50px;
-  margin-left: 5px;
-  color: var(--btn-text-color);
-  border: 1px solid var(--btn-border-color);
-  background-color: var(--btn-background-color);
-  height: 40px;
-  border-radius: 15px;
-  padding: 5px;
-  width: 80px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 1;
-}
