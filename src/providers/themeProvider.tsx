@@ -16,7 +16,9 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   const [isThemeDark, setThemeIsDark] = useState<boolean>(false)
 
   useEffect(() => {
-    document.body.className = isThemeDark ? 'dark' : ''
+    isThemeDark
+      ? document.body.classList.add('dark')
+      : document.body.classList.remove('dark')
   }, [isThemeDark])
 
   return (

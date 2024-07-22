@@ -43,7 +43,8 @@
 .checkbox {
   position: relative;
   top: -60px;
-  left: 67px;
-  z-index: 1;
+  left: 90px;
   color: var(--text-color);
+  transform: scale(1.5);
+  z-index: 1;
 }
