@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { TRootState } from '../../store/store'
 import { clearUsers } from '../../store/reducers/users'
+import { getCsvURL } from '../../helpers/csvConverter'
 import css from './cart.module.css'
 
 export const Cart: React.FC = () => {
@@ -16,9 +17,13 @@ export const Cart: React.FC = () => {
         <button className={css.btn} onClick={() => dispatch(clearUsers())}>
           Clear
         </button>
-        <button className={css.btn} onClick={() => console.log('save button')}>
+        <a
+          className={`${css.btn} ${css.savebtn}`}
+          href={getCsvURL(selectedUsers)}
+          download={`${selectedUsers.length}_users.csv`}
+        >
           Save
-        </button>
+        </a>
       </div>
     )
   }

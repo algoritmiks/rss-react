@@ -23,6 +23,13 @@
   cursor: pointer;
 }
 
+.savebtn {
+  text-decoration: none;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .text {
   color: var(--text-color);
   font-size: 20px;
