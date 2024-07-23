@@ -1,13 +1,15 @@
-import { useContext } from 'react'
+import { useContext, memo } from 'react'
 import { ThemeContext } from '../../providers/themeProvider'
 import css from './themeToggler.module.css'
 
-export const ThemeToggler: React.FC = () => {
-  const { isThemeDark, setThemeIsDark } = useContext(ThemeContext)
+const ThemeToggler: React.FC = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
-    <button className={css.btn} onClick={() => setThemeIsDark(!isThemeDark)}>
-      {isThemeDark ? 'Light' : 'Dark'}
+    <button className={css.btn} onClick={toggleTheme}>
+      {theme === 'dark' ? 'Light' : 'Dark'}
     </button>
   )
 }
+
+export default memo(ThemeToggler)

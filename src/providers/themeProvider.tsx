@@ -1,28 +1,30 @@
-import { useEffect, useState, createContext, ReactNode } from 'react'
+import { useState, createContext, ReactNode, useCallback } from 'react'
 
 interface IThemeContext {
-  isThemeDark: boolean
-  setThemeIsDark: (value: boolean) => void
+  theme: Theme
+  toggleTheme: () => void
 }
 
-export const ThemeContext = createContext<IThemeContext>({
-  isThemeDark: true,
-  setThemeIsDark: () => true,
-})
+type Theme = 'light' | 'dark'
+
+const contextDefaultValue: IThemeContext = {
+  theme: 'light',
+  toggleTheme: () => {},
+}
+
+export const ThemeContext = createContext<IThemeContext>(contextDefaultValue)
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isThemeDark, setThemeIsDark] = useState<boolean>(false)
+  const [theme, setThemeIsDark] = useState<Theme>('light')
 
-  useEffect(() => {
-    isThemeDark
-      ? document.body.classList.add('dark')
-      : document.body.classList.remove('dark')
-  }, [isThemeDark])
+  const toggleTheme = useCallback(() => {
+    setThemeIsDark((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
+  }, [])
 
   return (
-    <ThemeContext.Provider value={{ isThemeDark, setThemeIsDark }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )
