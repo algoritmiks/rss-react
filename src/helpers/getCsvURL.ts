@@ -1,6 +1,6 @@
 import { IDetailedUser } from '../ts/types'
 
-const convertCsv = (users: IDetailedUser[]) => {
+const getCsv = (users: IDetailedUser[]) => {
   const title = ['name', 'last name', 'username', 'age', 'e-mail']
 
   const strings = users.map((user) => [
@@ -11,11 +11,11 @@ const convertCsv = (users: IDetailedUser[]) => {
     user.email,
   ])
 
-  return [title, ...strings].map((row) => row.join(',')).join('\n')
+  return [title, ...strings].map((arr) => arr.join(',')).join('\n')
 }
 
 export const getCsvURL = (users: IDetailedUser[]) => {
-  const data = convertCsv(users)
-  const blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
+  const csv = getCsv(users)
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
   return URL.createObjectURL(blob)
 }

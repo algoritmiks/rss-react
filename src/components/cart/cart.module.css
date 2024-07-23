@@ -11,14 +11,13 @@
 }
 
 .btn {
-  margin-left: 10px;
+  margin-left: 5px;
   color: var(--btn-text-color);
   border: 1px solid var(--btn-border-color);
   background-color: var(--btn-background-color);
   height: 40px;
   border-radius: 15px;
   padding: 5px;
-  width: 80px;
   font-size: 20px;
   cursor: pointer;
 }
