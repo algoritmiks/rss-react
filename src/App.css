@@ -1,4 +1,11 @@
-:root {
+body {
+  display: flex;
+  justify-content: center;
+  background-color: var(--background-color);
+  transition: 0.2s ease-in-out;
+}
+
+body.light {
   --background-color: #ffffff;
   --text-color: #000000;
   --border-color: #b8b8b8;
@@ -8,13 +15,6 @@
   --btn-text-color: #000000;
   --btn-disabled-text-color: rgba(16, 16, 16, 0.3);
   --btn-disabled-background-color: rgba(239, 239, 239, 0.3);
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  background-color: var(--background-color);
-  transition: 0.2s ease-in-out;
 }
 
 body.dark {
