@@ -1,22 +1,20 @@
 import { BrowserRouter } from 'react-router-dom'
-import { vi, describe, it, expect, test } from 'vitest'
+import { describe, it, expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import { Search } from '../../../components/search/search'
+import { Provider } from 'react-redux'
+import { store } from '../../../store/store'
 
 describe('Search Component', () => {
-  const getData = vi.fn()
   const placeholderText = 'Search...'
 
   test('renders input field', async () => {
     render(
-      <Search
-        getData={getData}
-        totalPages={1}
-        setCurrentPage={vi.fn()}
-        currentPage={1}
-      />,
+      <Provider store={store}>
+        <Search />
+      </Provider>,
       { wrapper: BrowserRouter },
     )
 
@@ -26,12 +24,9 @@ describe('Search Component', () => {
 
   test('renders button', async () => {
     render(
-      <Search
-        getData={getData}
-        totalPages={1}
-        setCurrentPage={vi.fn()}
-        currentPage={1}
-      />,
+      <Provider store={store}>
+        <Search />
+      </Provider>,
       { wrapper: BrowserRouter },
     )
 
@@ -42,12 +37,9 @@ describe('Search Component', () => {
   it('save value to LS on button click', async () => {
     const user = userEvent.setup()
     render(
-      <Search
-        getData={getData}
-        totalPages={1}
-        setCurrentPage={vi.fn()}
-        currentPage={1}
-      />,
+      <Provider store={store}>
+        <Search />
+      </Provider>,
       { wrapper: BrowserRouter },
     )
 
@@ -60,7 +52,6 @@ describe('Search Component', () => {
     await user.click(searchButton)
 
     expect(localStorage.getItem('searchString')).toBe(searchTerm)
-    expect(getData).toHaveBeenCalled()
   })
 
   test('retrieves value LS on mounting and set it to input field', async () => {
@@ -68,12 +59,9 @@ describe('Search Component', () => {
     localStorage.setItem('searchString', searchTerm)
 
     render(
-      <Search
-        getData={getData}
-        totalPages={1}
-        setCurrentPage={vi.fn()}
-        currentPage={1}
-      />,
+      <Provider store={store}>
+        <Search />
+      </Provider>,
       { wrapper: BrowserRouter },
     )
     const searchInput = screen.getByPlaceholderText(placeholderText)
