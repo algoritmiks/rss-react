@@ -81,3 +81,10 @@ export const mockUsers = [
     email: 'jJq4g111Jt@example.com',
   },
 ]
+
+export const mockFullDataUsers = {
+  users: mockUsers,
+  total: mockUsers.length,
+  skip: 0,
+  limit: 10,
+}
