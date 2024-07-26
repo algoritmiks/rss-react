@@ -1,0 +1,27 @@
+.inp {
+  border: 1px solid var(--border-color);
+  height: 30px;
+  border-radius: 15px;
+  padding: 5px;
+  padding-left: 20px;
+  width: 250px;
+  font-size: 20px;
+}
+
+.btn {
+  margin-left: 5px;
+  border: 1px solid var(--btn-border-color);
+  color: var(--btn-text-color);
+  background-color: var(--btn-background-color);
+  border-radius: 15px;
+  height: 40px;
+  padding: 5px;
+  width: 80px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+}

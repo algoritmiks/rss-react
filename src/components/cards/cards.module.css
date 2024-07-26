@@ -1,0 +1,12 @@
+.cards {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 700px;
+  align-items: center;
+}
+
+.notFound {
+  color: var(--text-color);
+}
