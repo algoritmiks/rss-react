@@ -13,7 +13,7 @@ const App: React.FC<{ page: number }> = ({ page }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setPage({ page }))
+    dispatch(setPage({ page: Number(page) }))
   }, [])
 
   useEffect(() => {

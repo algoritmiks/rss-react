@@ -14,14 +14,6 @@ export const Pagination: React.FC = () => {
   )
   const { searchString } = useSelector((state: TRootState) => state.search)
 
-  // useEffect(() => {
-  //   console.log('router.query.page pagination.tsx > ', router.query.page)
-  //   if (router.query.page) {
-  //     console.log('router.query.page pagination.tsx > ', router.query.page)
-  //     dispatch(setPage({ page: Number(router.query.page) }))
-  //   }
-  // }, [])
-
   useEffect(() => {
     router.push({ query: { search: searchString, page } })
   }, [page])
