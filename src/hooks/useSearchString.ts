@@ -13,10 +13,8 @@ export const useSearchString = (): [
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const { detailed } = router.query
-  console.log('detailed useSearchString => ', detailed)
-
   useEffect(() => {
+    const { detailed } = router.query
     const localStr = getSearchStringOnLoading()
     setSearchString(localStr)
     dispatch(searchStringAction({ searchString: localStr }))
