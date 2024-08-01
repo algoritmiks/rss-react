@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { TRootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'
@@ -9,15 +7,8 @@ import { setPage } from '../../store/reducers/pagination'
 import css from './search.module.css'
 
 export const Search: React.FC = () => {
-  const [searchStringLocal, setSearchStringLocal] = useSearchString()
+  const [searchStringLocal, setSearchStringLocal, router] = useSearchString()
   const dispatch = useDispatch()
-  const [, setSearchParams] = useSearchParams()
-
-  useEffect(() => {
-    if (searchStringLocal) {
-      setSearchParams({ page: '1', search: searchStringLocal })
-    }
-  }, [])
 
   const { totalPages } = useSelector((state: TRootState) => state.pagination)
 
@@ -29,7 +20,7 @@ export const Search: React.FC = () => {
     e.preventDefault()
     const sString = searchStringLocal.trim()
     localStorage.setItem('searchString', sString)
-    setSearchParams({ page: '1', search: sString })
+    router.push({ query: { search: sString, page: 1 } })
     dispatch(setSearchString({ searchString: sString }))
     dispatch(setPage({ page: 1 }))
   }

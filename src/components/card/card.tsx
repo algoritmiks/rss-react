@@ -1,4 +1,5 @@
-import { Link, useSearchParams } from 'react-router-dom'
+// import { Link, useSearchParams } from 'react-router-dom'
+import Link from 'next/link'
 import { IDetailedUser, IUser } from '../../ts/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, removeUser } from '../../store/reducers/users'
@@ -8,9 +9,9 @@ import css from './card.module.css'
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
   const dispatch = useDispatch()
   const selectedUsers = useSelector((state: TRootState) => state.users)
-  const [searchParams] = useSearchParams()
-  const searchParam = searchParams.get('search')
-  const pageParam = searchParams.get('page')
+  // const [searchParams] = useSearchParams()
+  // const searchParam = searchParams.get('search')
+  // const pageParam = searchParams.get('page')
 
   const handleSelect = (user: IDetailedUser) => {
     if (selectedUsers.some((selectedUser) => selectedUser.id === user.id)) {
@@ -24,7 +25,8 @@ export const Card: React.FC<{ user: IUser }> = ({ user }) => {
     <div className={css.card}>
       <Link
         className={css.link}
-        to={`/user/${user.id}?page=${pageParam}&search=${searchParam}`}
+        href={`/user/${user.id}`}
+        // to={`/user/${user.id}?page=${pageParam}&search=${searchParam}`}
       >
         <div className={css.info}>
           <div className={css.nameContaner}>

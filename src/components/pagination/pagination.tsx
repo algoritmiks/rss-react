@@ -1,21 +1,29 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useRouter } from 'next/router'
 import { setPage } from '../../store/reducers/pagination'
 import { TRootState } from '../../store/store'
 
 import css from './pagination.module.css'
 
 export const Pagination: React.FC = () => {
+  const router = useRouter()
   const dispatch = useDispatch()
-  const [, setSearchParams] = useSearchParams()
   const { page, totalPages } = useSelector(
     (state: TRootState) => state.pagination,
   )
   const { searchString } = useSelector((state: TRootState) => state.search)
 
+  // useEffect(() => {
+  //   console.log('router.query.page pagination.tsx > ', router.query.page)
+  //   if (router.query.page) {
+  //     console.log('router.query.page pagination.tsx > ', router.query.page)
+  //     dispatch(setPage({ page: Number(router.query.page) }))
+  //   }
+  // }, [])
+
   useEffect(() => {
-    setSearchParams({ page: String(page), search: searchString })
+    router.push({ query: { search: searchString, page } })
   }, [page])
 
   return (
