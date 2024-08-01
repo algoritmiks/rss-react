@@ -1,23 +1,25 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useRouter } from 'next/router'
+
 import { Spinner } from '../common/spinner/spinner'
 import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC = () => {
-  const { userId } = useParams()
+  const router = useRouter()
+  const { detailed: userId, page, search } = router.query
+
   const {
     data: user,
     isLoading,
     isFetching,
   } = userApi.useFetchDetailedUserQuery(userId as string)
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-
-  const searchParam = searchParams.get('search')
-  const pageParam = searchParams.get('page')
 
   const handleClose = () => {
-    navigate(`/?page=${pageParam}&search=${searchParam}`)
+    router.push({ query: { search, page, detailed: '' } })
+  }
+
+  if (!userId) {
+    return null
   }
 
   return (

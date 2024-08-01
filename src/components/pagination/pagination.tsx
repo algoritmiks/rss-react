@@ -15,7 +15,10 @@ export const Pagination: React.FC = () => {
   const { searchString } = useSelector((state: TRootState) => state.search)
 
   useEffect(() => {
-    router.push({ query: { search: searchString, page } })
+    const { detailed } = router.query
+    router.push({
+      query: { search: searchString, page, detailed: detailed ? detailed : '' },
+    })
   }, [page])
 
   return (

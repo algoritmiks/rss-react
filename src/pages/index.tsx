@@ -4,11 +4,15 @@ import { GetServerSideProps } from 'next'
 import { Search } from '../components/search/search'
 import { Cards } from '../components/cards/cards'
 import { Cart } from '../components/cart/cart'
+import { CardDetailed } from '../components/cardDetailed/cardDetailed'
 import { ThemeContext } from '../providers/themeProvider'
 import ThemeToggler from '../components/themeToggler/themeToggler'
 import { setPage } from '../store/reducers/pagination'
 
-const App: React.FC<{ page: number }> = ({ page }) => {
+const App: React.FC<{ page: number; detailed: string }> = ({
+  page,
+  detailed,
+}) => {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch()
 
@@ -25,19 +29,21 @@ const App: React.FC<{ page: number }> = ({ page }) => {
       <ThemeToggler />
       <Search />
       <Cards />
+      {detailed && <CardDetailed />}
       <Cart />
     </div>
   )
 }
 
-export default App
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { page = 1 } = context.query
+  const { page = 1, detailed = '' } = context.query
 
   return {
     props: {
       page,
+      detailed,
     },
   }
 }
+
+export default App
