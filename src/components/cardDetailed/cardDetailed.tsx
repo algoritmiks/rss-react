@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-
 import { Spinner } from '../common/spinner/spinner'
 import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'

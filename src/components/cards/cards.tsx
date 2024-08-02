@@ -1,24 +1,36 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 import { Card } from '../card/card'
-import { TRootState } from '../../store/store'
 import { setTotalPages } from '../../store/reducers/pagination'
-import { userApi } from '../../services/userService'
 import Loader from '../common/loader/loader'
 import { LIMIT } from '../../constants/constants'
 import { IUsersData, IUser } from '../../ts/types'
 import css from './cards.module.css'
 
 export const Cards: React.FC<{ usersData: IUsersData }> = ({ usersData }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
-  const pagination = useSelector((state: TRootState) => state.pagination)
-  const searchString = useSelector(
-    (state: TRootState) => state.search.searchString,
-  )
-  const { isLoading, isFetching } = userApi.useFetchUsersQuery({
-    skip: (pagination.page - 1) * LIMIT,
-    search: searchString,
-  })
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      const { page } = router.query
+      const pageMatch = url.match(/page=(\d+)/)
+      let pageBefore = ''
+      if (pageMatch) {
+        pageBefore = pageMatch[1]
+      }
+      if (pageBefore !== page) {
+        setIsLoading(true)
+      }
+    }
+    router.events.on('routeChangeStart', handleRouteChange)
+    return () => {
+      setIsLoading(false)
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router])
 
   useEffect(() => {
     if (usersData) {
@@ -34,7 +46,7 @@ export const Cards: React.FC<{ usersData: IUsersData }> = ({ usersData }) => {
         <h1 className={css.notFound}>No users found</h1>
       )}
       <div className={css.cards}>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loader />
         ) : (
           usersData && (

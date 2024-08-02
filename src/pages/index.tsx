@@ -42,8 +42,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { page = 1, detailed = '', search = '' } = ctx.query
 
   const data = await fetchUsers(search as string, page as number)
-  // console.log(data)
-  console.log('server render')
 
   return {
     props: {
