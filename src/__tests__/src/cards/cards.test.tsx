@@ -57,4 +57,28 @@ describe('Users', () => {
       expect(characterList).toHaveLength(10)
     })
   })
+
+  it('renders next btn', () => {
+    render(
+      <Provider store={store}>
+        <Cards usersData={mockFullDataUsers} />
+      </Provider>,
+    )
+    waitFor(() => {
+      const next = screen.getAllByText(/next/g)
+      expect(next).toBeInTheDocument()
+    })
+  })
+
+  it('renders prev btn', () => {
+    render(
+      <Provider store={store}>
+        <Cards usersData={mockFullDataUsers} />
+      </Provider>,
+    )
+    waitFor(() => {
+      const prev = screen.getAllByText(/prev/g)
+      expect(prev).toBeInTheDocument()
+    })
+  })
 })

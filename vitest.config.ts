@@ -11,8 +11,8 @@ export default defineConfig({
       exclude: [
         ...configDefaults.exclude,
         '.eslintrc.cjs',
-        'src/components/errorPage',
-        'src/components/errorBoundary',
+        'next.config.mjs',
+        'next-env.d.ts',
       ],
     },
   },

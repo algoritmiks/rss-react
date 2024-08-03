@@ -1,11 +1,17 @@
-import { BrowserRouter } from 'react-router-dom'
-import { describe, it, expect, test } from 'vitest'
+import { describe, it, expect, test, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import { Search } from '../../../components/search/search'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
+
+vi.mock('next/router', () => ({
+  useRouter: () => ({
+    query: {},
+    push: vi.fn(),
+  }),
+}))
 
 describe('Search Component', () => {
   const placeholderText = 'Search...'
@@ -15,7 +21,6 @@ describe('Search Component', () => {
       <Provider store={store}>
         <Search />
       </Provider>,
-      { wrapper: BrowserRouter },
     )
 
     const searchInput = screen.getByPlaceholderText(placeholderText)
@@ -27,7 +32,6 @@ describe('Search Component', () => {
       <Provider store={store}>
         <Search />
       </Provider>,
-      { wrapper: BrowserRouter },
     )
 
     const searchButton = screen.getByRole('button')
@@ -40,7 +44,6 @@ describe('Search Component', () => {
       <Provider store={store}>
         <Search />
       </Provider>,
-      { wrapper: BrowserRouter },
     )
 
     const searchInput = screen.getByPlaceholderText(placeholderText)
@@ -62,7 +65,6 @@ describe('Search Component', () => {
       <Provider store={store}>
         <Search />
       </Provider>,
-      { wrapper: BrowserRouter },
     )
     const searchInput = screen.getByPlaceholderText(placeholderText)
     expect(searchInput).toHaveValue(searchTerm)
