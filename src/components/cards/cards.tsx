@@ -9,7 +9,7 @@ import { IUsersData, IUser } from '../../ts/types'
 import css from './cards.module.css'
 
 export const Cards: React.FC<{ usersData: IUsersData }> = ({ usersData }) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
   const router = useRouter()
 

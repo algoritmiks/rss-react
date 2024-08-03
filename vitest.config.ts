@@ -1,6 +1,8 @@
+import react from '@vitejs/plugin-react'
 import { defineConfig, configDefaults } from 'vitest/config'
 
 export default defineConfig({
+  plugins: [react()],
   test: {
     environment: 'jsdom',
     globals: true,
@@ -8,7 +10,6 @@ export default defineConfig({
     coverage: {
       exclude: [
         ...configDefaults.exclude,
-        'src/main.tsx',
         '.eslintrc.cjs',
         'src/components/errorPage',
         'src/components/errorBoundary',
