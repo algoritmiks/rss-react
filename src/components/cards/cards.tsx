@@ -10,13 +10,21 @@ import { setTotalPages } from '../../store/reducers/pagination'
 import Loader from '../common/loader/loader'
 import { LIMIT } from '../../constants/constants'
 import { IUsersData, IUser } from '../../ts/types'
+import { setPage } from '../../store/reducers/pagination'
 import css from './cards.module.css'
 
-export const Cards: React.FC<{ usersData: IUsersData }> = ({ usersData }) => {
+export const Cards: React.FC<{ usersData: IUsersData; page: number }> = ({
+  usersData,
+  page,
+}) => {
   // const [isLoading, setIsLoading] = useState(false)
   const isLoading = false
-
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setPage({ page: Number(page) }))
+  }, [])
+
   // const router = useRouter()
 
   // useEffect(() => {

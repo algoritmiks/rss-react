@@ -21,7 +21,6 @@ export const Search: React.FC = () => {
     e.preventDefault()
     const sString = searchStringLocal.trim()
     localStorage.setItem('searchString', sString)
-    // router.push({ query: { search: sString, page: 1 } })
     router.push(`/?search=${sString}&page=1`)
 
     dispatch(setSearchString({ searchString: sString }))

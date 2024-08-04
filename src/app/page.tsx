@@ -20,7 +20,7 @@ const App: React.FC<Props> = async ({ searchParams }) => {
   return (
     <div className="container">
       <Search />
-      <Cards usersData={data} />
+      <Cards usersData={data} page={page} />
       {detailed && <CardDetailed />}
       <Cart />
       <ThemeToggler />
