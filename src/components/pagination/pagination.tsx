@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { setPage } from '../../store/reducers/pagination'
+import { setPage, setIsLoading } from '../../store/reducers/pagination'
 import { TRootState } from '../../store/store'
 
 import css from './pagination.module.css'
@@ -30,6 +30,7 @@ export const Pagination: React.FC = () => {
         className={css.btn}
         onClick={() => {
           dispatch(setPage({ page: page - 1 }))
+          dispatch(setIsLoading({ isLoading: true }))
         }}
       >
         Prev
@@ -40,6 +41,7 @@ export const Pagination: React.FC = () => {
         className={css.btn}
         onClick={() => {
           dispatch(setPage({ page: page + 1 }))
+          dispatch(setIsLoading({ isLoading: true }))
         }}
       >
         Next

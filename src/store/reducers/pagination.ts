@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export interface IPaginationState {
   page: number
   totalPages: number
+  isLoading: boolean
 }
 
 export const paginationSlice = createSlice({
@@ -10,6 +11,7 @@ export const paginationSlice = createSlice({
   initialState: <IPaginationState>{
     page: 1,
     totalPages: 1,
+    isLoading: true,
   },
   reducers: {
     setPage: (state, action: PayloadAction<{ page: number }>) => {
@@ -18,9 +20,12 @@ export const paginationSlice = createSlice({
     setTotalPages: (state, action: PayloadAction<{ totalPages: number }>) => {
       state.totalPages = action.payload.totalPages
     },
+    setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
+      state.isLoading = action.payload.isLoading
+    },
   },
 })
 
-export const { setPage, setTotalPages } = paginationSlice.actions
+export const { setPage, setTotalPages, setIsLoading } = paginationSlice.actions
 
 export default paginationSlice.reducer
