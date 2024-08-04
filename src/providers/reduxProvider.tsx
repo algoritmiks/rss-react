@@ -3,15 +3,14 @@
 import { Provider } from 'react-redux'
 import { store } from '../store/store'
 import { ThemeProvider } from './themeProvider'
+import ErrorBoundary from '../components/errorBoundary/errorBoundary'
 
-export default function ClientProvider({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <Provider store={store}>
-      <ThemeProvider>{children}</ThemeProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </Provider>
+    </ErrorBoundary>
   )
 }
