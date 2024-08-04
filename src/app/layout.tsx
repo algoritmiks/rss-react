@@ -1,5 +1,5 @@
 import '../styles/global.css'
-import ClientProvider from '../providers/reduxProvider'
+import Providers from '../providers/reduxProvider'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientProvider>{children}</ClientProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
