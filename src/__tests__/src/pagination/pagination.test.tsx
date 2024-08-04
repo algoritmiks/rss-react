@@ -5,12 +5,18 @@ import { Pagination } from '../../../components/pagination/pagination'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
 
-vi.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {},
-    push: vi.fn(),
-  }),
-}))
+vi.mock('next/navigation', async () => {
+  return {
+    useRouter: () => ({
+      query: {},
+      push: vi.fn(),
+    }),
+    useSearchParams: () => ({
+      get: vi.fn(() => null), // Mock get to return null or any default value
+      set: vi.fn(),
+    }),
+  }
+})
 
 describe('Pagination component', () => {
   it('renders buttons in pagination', async () => {
