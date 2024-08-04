@@ -1,7 +1,7 @@
 import { render, screen, act } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import '@testing-library/jest-dom'
-import { ThemeProvider, ThemeContext } from '../../providers/themeProvider'
+import { ThemeProvider, ThemeContext } from '../../../providers/themeProvider'
 import { useContext } from 'react'
 
 // Helper component to use context

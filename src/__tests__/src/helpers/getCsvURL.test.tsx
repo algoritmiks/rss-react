@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { IDetailedUser } from '../../ts/types'
-import { getCsv } from '../../helpers/getCsvURL'
+import { IDetailedUser } from '../../../ts/types'
+import { getCsv } from '../../../helpers/getCsvURL'
 
 describe('CSV Utilities', () => {
   describe('getCsv', () => {
