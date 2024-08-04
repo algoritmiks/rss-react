@@ -21,6 +21,7 @@
     "incremental": true,
     "plugins": [{ "name": "next" }]
   },
+  "types": ["vitest/globals"],
   "include": [
     "./src",
     "./dist/types/**/*.ts",

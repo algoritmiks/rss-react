@@ -6,12 +6,18 @@ import { Search } from '../../../components/search/search'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
 
-vi.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {},
-    push: vi.fn(),
-  }),
-}))
+vi.mock('next/navigation', async () => {
+  return {
+    useRouter: () => ({
+      query: {},
+      push: vi.fn(),
+    }),
+    useSearchParams: () => ({
+      get: vi.fn(),
+      set: vi.fn(),
+    }),
+  }
+})
 
 describe('Search Component', () => {
   const placeholderText = 'Search...'
