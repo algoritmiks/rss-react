@@ -7,15 +7,18 @@ import { Cards } from '../../../components/cards/cards'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
 
-vi.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {},
-    events: {
-      on: vi.fn(),
-      off: vi.fn(),
-    },
-  }),
-}))
+vi.mock('next/navigation', async () => {
+  return {
+    useRouter: () => ({
+      query: {},
+      push: vi.fn(),
+    }),
+    useSearchParams: () => ({
+      get: vi.fn(() => null),
+      set: vi.fn(),
+    }),
+  }
+})
 
 afterEach(() => {
   vi.restoreAllMocks()
@@ -25,7 +28,7 @@ describe('Users', () => {
   it('renders the specified card', () => {
     render(
       <Provider store={store}>
-        <Cards usersData={mockFullDataUsers} />
+        <Cards usersData={mockFullDataUsers} page={1} />
       </Provider>,
     )
     waitFor(() => {
@@ -37,7 +40,7 @@ describe('Users', () => {
   it('renders button', () => {
     render(
       <Provider store={store}>
-        <Cards usersData={mockFullDataUsers} />
+        <Cards usersData={mockFullDataUsers} page={1} />
       </Provider>,
     )
     waitFor(() => {
@@ -49,7 +52,7 @@ describe('Users', () => {
   it('renders the specified number of cards', () => {
     render(
       <Provider store={store}>
-        <Cards usersData={mockFullDataUsers} />
+        <Cards usersData={mockFullDataUsers} page={1} />
       </Provider>,
     )
     waitFor(() => {
@@ -61,7 +64,7 @@ describe('Users', () => {
   it('renders next btn', () => {
     render(
       <Provider store={store}>
-        <Cards usersData={mockFullDataUsers} />
+        <Cards usersData={mockFullDataUsers} page={1} />
       </Provider>,
     )
     waitFor(() => {
@@ -73,7 +76,7 @@ describe('Users', () => {
   it('renders prev btn', () => {
     render(
       <Provider store={store}>
-        <Cards usersData={mockFullDataUsers} />
+        <Cards usersData={mockFullDataUsers} page={1} />
       </Provider>,
     )
     waitFor(() => {
