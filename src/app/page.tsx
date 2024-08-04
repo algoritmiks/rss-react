@@ -1,7 +1,7 @@
 import { Cards } from '../components/cards/cards'
 import { CardDetailed } from '../components/cardDetailed/cardDetailed'
 import { Cart } from '../components/cart/cart'
-// import { Search } from '../components/search/search'
+import { Search } from '../components/search/search'
 import ThemeToggler from '../components/themeToggler/themeToggler'
 import { fetchUsers } from '../api/api'
 
@@ -19,7 +19,7 @@ const App: React.FC<Props> = async ({ searchParams }) => {
 
   return (
     <div className="container">
-      {/* <Search /> */}
+      <Search />
       <Cards usersData={data} />
       {detailed && <CardDetailed />}
       <Cart />
