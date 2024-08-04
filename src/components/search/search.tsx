@@ -1,3 +1,4 @@
+'use client'
 import { useSelector, useDispatch } from 'react-redux'
 import { TRootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'

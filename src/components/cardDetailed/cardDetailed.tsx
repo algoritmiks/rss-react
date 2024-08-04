@@ -1,11 +1,15 @@
-import { useRouter } from 'next/router'
+'use client'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Spinner } from '../common/spinner/spinner'
 import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC = () => {
   const router = useRouter()
-  const { detailed: userId, page, search } = router.query
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+  const page = searchParams.get('page')
+  const userId = searchParams.get('detailed')
 
   const {
     data: user,
@@ -14,7 +18,9 @@ export const CardDetailed: React.FC = () => {
   } = userApi.useFetchDetailedUserQuery(userId as string)
 
   const handleClose = () => {
-    router.push({ query: { search, page, detailed: '' } })
+    router.push(
+      `/?search=${search ? search : ''}&page=${page ? page : ''}&detailed=`,
+    )
   }
 
   if (!userId) {

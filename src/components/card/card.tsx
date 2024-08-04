@@ -1,16 +1,19 @@
-import { IDetailedUser, IUser } from '../../ts/types'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { addUser, removeUser } from '../../store/reducers/users'
 import { TRootState } from '../../store/store'
+import { IDetailedUser, IUser } from '../../ts/types'
 import css from './card.module.css'
 
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
   const dispatch = useDispatch()
   const selectedUsers = useSelector((state: TRootState) => state.users)
-
   const router = useRouter()
-  const { page, search } = router.query
+  const searchParams = useSearchParams()
+
+  const search = searchParams.get('search')
+  const page = searchParams.get('page')
+
   const handleSelect = (user: IDetailedUser) => {
     if (selectedUsers.some((selectedUser) => selectedUser.id === user.id)) {
       dispatch(removeUser({ user }))
@@ -23,9 +26,11 @@ export const Card: React.FC<{ user: IUser }> = ({ user }) => {
     <div className={css.card}>
       <div
         className={css.link}
-        onClick={() =>
-          router.push({ query: { search, page, detailed: user.id } })
-        }
+        onClick={() => {
+          router.push(
+            `/?search=${search ? search : ''}&page=${page ? page : ''}&detailed=${user.id}`,
+          )
+        }}
       >
         <div className={css.info}>
           <div className={css.nameContaner}>

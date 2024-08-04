@@ -1,6 +1,10 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+// import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+// import { useRouter, useSearchParams } from 'next/navigation'
 import { Card } from '../card/card'
 import { setTotalPages } from '../../store/reducers/pagination'
 import Loader from '../common/loader/loader'
@@ -9,28 +13,30 @@ import { IUsersData, IUser } from '../../ts/types'
 import css from './cards.module.css'
 
 export const Cards: React.FC<{ usersData: IUsersData }> = ({ usersData }) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const dispatch = useDispatch()
-  const router = useRouter()
+  // const [isLoading, setIsLoading] = useState(false)
+  const isLoading = false
 
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      const { page } = router.query
-      const pageMatch = url.match(/page=(\d+)/)
-      let pageBefore = ''
-      if (pageMatch) {
-        pageBefore = pageMatch[1]
-      }
-      if (pageBefore !== page) {
-        setIsLoading(true)
-      }
-    }
-    router.events.on('routeChangeStart', handleRouteChange)
-    return () => {
-      setIsLoading(false)
-      router.events.off('routeChangeStart', handleRouteChange)
-    }
-  }, [router])
+  const dispatch = useDispatch()
+  // const router = useRouter()
+
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string) => {
+  //     const { page } = router.query
+  //     const pageMatch = url.match(/page=(\d+)/)
+  //     let pageBefore = ''
+  //     if (pageMatch) {
+  //       pageBefore = pageMatch[1]
+  //     }
+  //     if (pageBefore !== page) {
+  //       setIsLoading(true)
+  //     }
+  //   }
+  //   router.events.on('routeChangeStart', handleRouteChange)
+  //   return () => {
+  //     setIsLoading(false)
+  //     router.events.off('routeChangeStart', handleRouteChange)
+  //   }
+  // }, [router])
 
   useEffect(() => {
     if (usersData) {
