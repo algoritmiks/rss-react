@@ -7,15 +7,18 @@ import { Card } from '../../../components/card/card'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
 
-vi.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {},
-    events: {
-      on: vi.fn(),
-      off: vi.fn(),
-    },
-  }),
-}))
+vi.mock('next/navigation', async () => {
+  return {
+    useRouter: () => ({
+      query: {},
+      push: vi.fn(),
+    }),
+    useSearchParams: () => ({
+      get: vi.fn(() => null),
+      set: vi.fn(),
+    }),
+  }
+})
 
 afterEach(() => {
   vi.restoreAllMocks()
