@@ -1,6 +1,6 @@
 import { IDetailedUser } from '../ts/types'
 
-const getCsv = (users: IDetailedUser[]) => {
+export const getCsv = (users: IDetailedUser[]) => {
   const title = ['name', 'last name', 'username', 'age', 'e-mail']
 
   const strings = users.map((user) => [
