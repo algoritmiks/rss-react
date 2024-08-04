@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fetchUsers } from '../../../api/api' // Adjust import path as needed
+import { fetchUsers } from '../../../api/api'
 import { IUsersData } from '../../../ts/types'
 
 describe('API Functions', () => {
