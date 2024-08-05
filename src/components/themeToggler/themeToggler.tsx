@@ -1,8 +1,8 @@
-import { useContext, memo } from 'react'
+import { useContext } from 'react'
 import { ThemeContext } from '../../providers/themeProvider'
 import css from './themeToggler.module.css'
 
-const ThemeToggler: React.FC = () => {
+export default function ThemeToggler() {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
@@ -11,5 +11,3 @@ const ThemeToggler: React.FC = () => {
     </button>
   )
 }
-
-export default memo(ThemeToggler)
