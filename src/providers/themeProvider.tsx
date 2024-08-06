@@ -20,6 +20,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   const [theme, setThemeIsDark] = useState<Theme>('light')
 
   const toggleTheme = useCallback(() => {
+    console.log('toggleTheme')
     setThemeIsDark((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
   }, [])
 

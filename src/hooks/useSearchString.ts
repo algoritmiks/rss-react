@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getSearchStringOnLoading } from '../helpers/getSearchStringOnLoading'
 
 export const useSearchString = (): [
@@ -6,7 +6,13 @@ export const useSearchString = (): [
   React.Dispatch<React.SetStateAction<string>>,
 ] => {
   const [searchString, setSearchString] = useState<string>(
-    getSearchStringOnLoading,
+    // getSearchStringOnLoading,
+    '',
   )
+
+  useEffect(() => {
+    setSearchString(getSearchStringOnLoading())
+  }, [])
+
   return [searchString, setSearchString]
 }
