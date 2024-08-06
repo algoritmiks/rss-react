@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { TRootState } from '../../store/store'
@@ -12,12 +11,6 @@ export const Search: React.FC = () => {
   const [searchStringLocal, setSearchStringLocal] = useSearchString()
   const dispatch = useDispatch()
   const [, setSearchParams] = useSearchParams()
-
-  useEffect(() => {
-    if (searchStringLocal) {
-      setSearchParams({ page: '1', search: searchStringLocal })
-    }
-  }, [])
 
   const { totalPages } = useSelector((state: TRootState) => state.pagination)
 
