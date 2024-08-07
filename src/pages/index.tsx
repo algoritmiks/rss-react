@@ -8,14 +8,15 @@ import { CardDetailed } from '../components/cardDetailed/cardDetailed'
 import { ThemeContext } from '../providers/themeProvider'
 import ThemeToggler from '../components/themeToggler/themeToggler'
 import { setPage } from '../store/reducers/pagination'
-import { fetchUsers } from '../api/api'
-import { IUsersData } from '../ts/types'
+import { fetchUsers, fetchUser } from '../api/api'
+import { IDetailedUser, IUsersData } from '../ts/types'
 
 const App: React.FC<{
   page: number
   detailed: string
   data: IUsersData
-}> = ({ page, detailed, data }) => {
+  user: IDetailedUser
+}> = ({ page, detailed, data, user }) => {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch()
 
@@ -32,7 +33,7 @@ const App: React.FC<{
       <ThemeToggler />
       <Search />
       <Cards usersData={data} />
-      {detailed && <CardDetailed />}
+      {detailed && <CardDetailed user={user} />}
       <Cart />
     </div>
   )
@@ -42,12 +43,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { page = 1, detailed = '', search = '' } = ctx.query
 
   const data = await fetchUsers(search as string, page as number)
+  const user = await fetchUser(detailed as string)
 
   return {
     props: {
       page,
       detailed,
       data,
+      user,
     },
   }
 }

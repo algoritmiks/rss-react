@@ -4,24 +4,37 @@ import '@testing-library/jest-dom'
 import { CardDetailed } from '../../../components/cardDetailed/cardDetailed'
 import { Provider } from 'react-redux'
 import { store } from '../../../store/store'
+import { IDetailedUser } from '../../../ts/types'
 
 vi.mock('next/router', () => ({
   useRouter: () => ({
-    query: { detailed: '1' },
+    query: { detailed: '1', page: '1', search: 'example' },
     push: vi.fn(),
   }),
 }))
 
-describe('CharacterDetails Component', () => {
-  it('displays loader while fetching data', async () => {
+const mockUser: IDetailedUser = {
+  id: 1,
+  firstName: 'John',
+  lastName: 'Doe',
+  username: 'johndoe',
+  age: 28,
+  email: 'john.doe@example.com',
+}
+
+describe('CardDetailed Component', () => {
+  it('displays user details after loading', async () => {
     render(
       <Provider store={store}>
-        <CardDetailed />
+        <CardDetailed user={mockUser} />
       </Provider>,
     )
+
     await waitFor(() => {
-      const card = screen.getAllByText('Age: 28')
-      expect(card).toHaveLength(1)
+      expect(screen.getByText('John Doe')).toBeInTheDocument()
+      expect(screen.getByText('Age: 28')).toBeInTheDocument()
+      expect(screen.getByText('john.doe@example.com')).toBeInTheDocument()
+      expect(screen.getByText('username: johndoe')).toBeInTheDocument()
     })
   })
 })
