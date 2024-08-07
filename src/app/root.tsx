@@ -1,10 +1,9 @@
 import { Scripts } from '@remix-run/react'
-import Providers from '../providers/providers'
 import { useContext, useEffect } from 'react'
+import Providers from '../providers/providers'
 import { ThemeContext } from '../providers/themeProvider'
-import App from '../App'
-import '../App.css'
-import '../index.css'
+import App from '../components/app/app'
+import '../components/app/app.css'
 
 export default function Root() {
   const { theme } = useContext(ThemeContext)

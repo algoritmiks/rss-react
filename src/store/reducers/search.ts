@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-// import { getSearchStringOnLoading } from '../../helpers/getSearchStringOnLoading'
 
 export interface ISearchString {
   searchString: string
@@ -8,7 +7,6 @@ export interface ISearchString {
 export const searchStringSlice = createSlice({
   name: 'search',
   initialState: <ISearchString>{
-    // searchString: getSearchStringOnLoading(),
     searchString: '',
   },
   reducers: {

@@ -1,12 +1,11 @@
 import { Outlet } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
-import ErrorBoundary from './components/errorBoundary/errorBoundary'
-import { Search } from './components/search/search'
-import { Cards } from './components/cards/cards'
-import ThemeToggler from './components/themeToggler/themeToggler'
-import { Cart } from './components/cart/cart'
-import { ThemeContext } from './providers/themeProvider'
-import './App.css'
+import ErrorBoundary from '../errorBoundary/errorBoundary'
+import { Search } from '../search/search'
+import { Cards } from '../cards/cards'
+import ThemeToggler from '../themeToggler/themeToggler'
+import { Cart } from '../cart/cart'
+import { ThemeContext } from '../../providers/themeProvider'
 
 const App: React.FC = () => {
   const { theme } = useContext(ThemeContext)
