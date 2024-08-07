@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigation } from '@remix-run/react'
+import { useLoaderData, useNavigation, useLocation } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Card } from '../card/card'
@@ -10,13 +10,18 @@ import css from './cards.module.css'
 
 export const Cards: React.FC = () => {
   const dispatch = useDispatch()
+  const [isLoading, setIsLoading] = useState(false)
+  const location = useLocation()
   const { state } = useNavigation()
   const data: IUsersData = useLoaderData()
 
-  const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
-    setIsLoading(state === 'loading' ? true : false)
+    if (location.pathname === '/') {
+      setIsLoading(state === 'loading' ? true : false)
+    }
+    if (state === 'idle') {
+      setIsLoading(false)
+    }
   }, [state])
 
   useEffect(() => {
