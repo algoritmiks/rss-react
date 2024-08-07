@@ -6,6 +6,8 @@ import { Cards } from '../cards/cards'
 import ThemeToggler from '../themeToggler/themeToggler'
 import { Cart } from '../cart/cart'
 import { ThemeContext } from '../../providers/themeProvider'
+import { setPage } from '../../store/reducers/pagination'
+import { useDispatch } from 'react-redux'
 import css from './app.module.css'
 
 const App: React.FC = () => {
@@ -14,6 +16,14 @@ const App: React.FC = () => {
   useEffect(() => {
     document.body.className = theme
   }, [theme])
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const url = new URLSearchParams(window.location.search)
+    const page = url.get('page')
+    dispatch(setPage({ page: Number(page || 1) }))
+  }, [])
 
   return (
     <div className={css.container}>
