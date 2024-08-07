@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react'
 import Providers from '../providers/providers'
 import { ThemeContext } from '../providers/themeProvider'
 import App from '../components/app/app'
-import '../components/app/app.css'
+import '../styles/global.css'
 
 export default function Root() {
   const { theme } = useContext(ThemeContext)

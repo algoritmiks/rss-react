@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from '@remix-run/react'
 import { Spinner } from '../common/spinner/spinner'
 import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'

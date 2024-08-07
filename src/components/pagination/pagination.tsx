@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from '@remix-run/react'
 import { setPage } from '../../store/reducers/pagination'
 import { TRootState } from '../../store/store'
 

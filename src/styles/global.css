@@ -33,12 +33,3 @@ body.dark {
   --btn-disabled-text-color: rgba(255, 255, 255, 0.3);
   --btn-disabled-background-color: rgba(153, 153, 153, 0.3);
 }
-
-.container {
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px;
-  flex-direction: column;
-}

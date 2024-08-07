@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from '@remix-run/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { TRootState } from '../../store/store'
 import { setSearchString } from '../../store/reducers/search'

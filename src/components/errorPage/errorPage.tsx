@@ -1,4 +1,4 @@
-import { Link, useRouteError } from 'react-router-dom'
+import { Link, useRouteError } from '@remix-run/react'
 import css from './errorPage.module.css'
 
 interface err {

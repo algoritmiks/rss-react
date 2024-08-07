@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from '@remix-run/react'
 import { IDetailedUser, IUser } from '../../ts/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, removeUser } from '../../store/reducers/users'

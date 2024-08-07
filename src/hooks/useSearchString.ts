@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from '@remix-run/react'
 import { setSearchString as dispatchSetSearchString } from '../store/reducers/search'
 import { getSearchStringOnLoading } from '../helpers/getSearchStringOnLoading'
 
