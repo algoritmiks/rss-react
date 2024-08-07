@@ -1,12 +1,22 @@
-import { useNavigate, useSearchParams, useLoaderData } from '@remix-run/react'
+import {
+  useNavigate,
+  useSearchParams,
+  useLoaderData,
+  useNavigation,
+} from '@remix-run/react'
+import { useEffect, useState } from 'react'
 import { Spinner } from '../common/spinner/spinner'
 import { IDetailedUser } from '../../ts/types'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC = () => {
   const user: IDetailedUser = useLoaderData()
+  const { state } = useNavigation()
+  const [isLoading, setIsLoading] = useState(true)
 
-  const isLoading = false
+  useEffect(() => {
+    setIsLoading(state === 'loading' ? true : false)
+  }, [state])
 
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()

@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useLoaderData, useNavigation } from '@remix-run/react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Card } from '../card/card'
 import { setTotalPages } from '../../store/reducers/pagination'
@@ -6,12 +7,17 @@ import Loader from '../common/loader/loader'
 import { LIMIT } from '../../constants/constants'
 import { IUser, IUsersData } from '../../ts/types'
 import css from './cards.module.css'
-import { useLoaderData } from '@remix-run/react'
 
 export const Cards: React.FC = () => {
   const dispatch = useDispatch()
-
+  const { state } = useNavigation()
   const data: IUsersData = useLoaderData()
+
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setIsLoading(state === 'loading' ? true : false)
+  }, [state])
 
   useEffect(() => {
     if (data) {
@@ -19,24 +25,19 @@ export const Cards: React.FC = () => {
     }
   }, [data])
 
-  const isLoading = false
-
   return (
     <>
       {data?.users.length === 0 && (
         <h1 className={css.notFound}>No users found</h1>
       )}
       <div className={css.cards}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          data && (
-            <>
-              {data.users.map((user: IUser) => {
-                return <Card key={user.id} user={user} />
-              })}
-            </>
-          )
+        <div className={css.loader}>{isLoading && <Loader />}</div>
+        {data && (
+          <>
+            {data.users.map((user: IUser) => {
+              return <Card key={user.id} user={user} />
+            })}
+          </>
         )}
       </div>
     </>
