@@ -1,15 +1,13 @@
-import { useNavigate, useParams, useSearchParams } from '@remix-run/react'
+import { useNavigate, useSearchParams, useLoaderData } from '@remix-run/react'
 import { Spinner } from '../common/spinner/spinner'
-import { userApi } from '../../services/userService'
+import { IDetailedUser } from '../../ts/types'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC = () => {
-  const { userId } = useParams()
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-  } = userApi.useFetchDetailedUserQuery(userId as string)
+  const user: IDetailedUser = useLoaderData()
+
+  const isLoading = false
+
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
@@ -24,7 +22,7 @@ export const CardDetailed: React.FC = () => {
     <>
       <div className={css.background} onClick={handleClose}></div>
       <div className={css.cardDetailed}>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           user && (
