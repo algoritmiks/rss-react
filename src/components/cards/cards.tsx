@@ -18,8 +18,7 @@ export const Cards: React.FC = () => {
   useEffect(() => {
     if (location.pathname === '/') {
       setIsLoading(state === 'loading' ? true : false)
-    }
-    if (state === 'idle') {
+    } else {
       setIsLoading(false)
     }
   }, [state])
