@@ -1,21 +1,16 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Spinner } from '../common/spinner/spinner'
-import { userApi } from '../../services/userService'
 import css from './cardDetailed.module.css'
+import { IDetailedUser } from '../../ts/types'
 
-export const CardDetailed: React.FC = () => {
+export const CardDetailed: React.FC<{ user: IDetailedUser }> = ({ user }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const search = searchParams.get('search')
   const page = searchParams.get('page')
-  const userId = searchParams.get('detailed')
 
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-  } = userApi.useFetchDetailedUserQuery(userId as string)
+  const isLoading = false
 
   const handleClose = () => {
     router.push(
@@ -23,15 +18,11 @@ export const CardDetailed: React.FC = () => {
     )
   }
 
-  if (!userId) {
-    return null
-  }
-
   return (
     <>
       <div className={css.background} onClick={handleClose}></div>
       <div className={css.cardDetailed}>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           user && (

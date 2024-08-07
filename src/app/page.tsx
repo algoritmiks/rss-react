@@ -1,5 +1,5 @@
 import { Cards } from '../components/cards/cards'
-import { CardDetailed } from '../components/cardDetailed/cardDetailed'
+import { CardDetailedContainer } from '../components/cardDetailed/cardDetaiedContainer'
 import { Cart } from '../components/cart/cart'
 import { Search } from '../components/search/search'
 import ThemeToggler from '../components/themeToggler/themeToggler'
@@ -21,7 +21,7 @@ const App: React.FC<Props> = async ({ searchParams }) => {
     <div className="container">
       <Search />
       <Cards usersData={data} page={page} />
-      {detailed && <CardDetailed />}
+      {detailed && <CardDetailedContainer searchParams={searchParams} />}
       <Cart />
       <ThemeToggler />
     </div>
