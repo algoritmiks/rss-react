@@ -35,10 +35,6 @@ describe('CardDetailed Component', () => {
     )
 
     await waitFor(() => {
-      // expect(screen.getByText('John Doe')).toBeInTheDocument()
-      // expect(screen.getByText('Age: 28')).toBeInTheDocument()
-      // expect(screen.getByText('john.doe@example.com')).toBeInTheDocument()
-      // expect(screen.getByText('username: johndoe')).toBeInTheDocument()
       expect(screen.getByRole('spinner')).toBeInTheDocument()
     })
   })
