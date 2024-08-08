@@ -1,19 +1,38 @@
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { Spinner } from '../common/spinner/spinner'
 import { IDetailedUser } from '../../ts/types'
 import css from './cardDetailed.module.css'
 
 export const CardDetailed: React.FC<{ user: IDetailedUser }> = ({ user }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
-  const { detailed: userId, page, search } = router.query
+  const { detailed, page, search } = router.query
 
   const handleClose = () => {
     router.push({ query: { search, page, detailed: '' } })
   }
 
-  const isLoading = false
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      const { detailed } = router.query
+      const detailedMatch = url.match(/detailed=(\d+)/)
+      let detailedBefore = ''
+      if (detailedMatch) {
+        detailedBefore = detailedMatch[1]
+      }
+      if (detailedBefore !== detailed) {
+        setIsLoading(true)
+      }
+    }
+    router.events.on('routeChangeStart', handleRouteChange)
+    return () => {
+      setIsLoading(false)
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router])
 
-  if (!userId) {
+  if (!detailed) {
     return null
   }
 
