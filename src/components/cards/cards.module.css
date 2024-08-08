@@ -10,3 +10,10 @@
 .notFound {
   color: var(--text-color);
 }
+
+.loader {
+  position: absolute;
+  top: 470px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

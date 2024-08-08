@@ -36,16 +36,17 @@ export const Cards: React.FC<{ usersData: IUsersData; page: number }> = ({
         <h1 className={css.notFound}>No users found</h1>
       )}
       <div className={css.cards}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          usersData && (
-            <>
-              {usersData.users.map((user: IUser) => {
-                return <Card key={user.id} user={user} />
-              })}
-            </>
-          )
+        {isLoading && (
+          <div className={css.loader}>
+            <Loader />{' '}
+          </div>
+        )}
+        {usersData && (
+          <>
+            {usersData.users.map((user: IUser) => {
+              return <Card key={user.id} user={user} />
+            })}
+          </>
         )}
       </div>
     </>

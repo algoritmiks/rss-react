@@ -3,6 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { addUser, removeUser } from '../../store/reducers/users'
 import { TRootState } from '../../store/store'
 import { IDetailedUser, IUser } from '../../ts/types'
+import { setIsLoading } from '../../store/reducers/pagination'
 import css from './card.module.css'
 
 export const Card: React.FC<{ user: IUser }> = ({ user }) => {
@@ -27,6 +28,7 @@ export const Card: React.FC<{ user: IUser }> = ({ user }) => {
       <div
         className={css.link}
         onClick={() => {
+          dispatch(setIsLoading({ isLoading: true }))
           router.push(
             `/?search=${search ? search : ''}&page=${page ? page : ''}&detailed=${user.id}`,
           )

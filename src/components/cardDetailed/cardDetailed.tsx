@@ -1,5 +1,7 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { TRootState } from '../../store/store'
 import { Spinner } from '../common/spinner/spinner'
 import css from './cardDetailed.module.css'
 import { IDetailedUser } from '../../ts/types'
@@ -10,7 +12,7 @@ export const CardDetailed: React.FC<{ user: IDetailedUser }> = ({ user }) => {
   const search = searchParams.get('search')
   const page = searchParams.get('page')
 
-  const isLoading = false
+  const { isLoading } = useSelector((state: TRootState) => state.pagination)
 
   const handleClose = () => {
     router.push(
