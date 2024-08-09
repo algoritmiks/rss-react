@@ -11,8 +11,7 @@ import '@testing-library/jest-dom'
 const MockComponent = () => <div>Test Component</div>
 interface CustomAppProps {
   Component: NextComponentType<NextPageContext>
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  pageProps: any
+  pageProps: unknown
 }
 
 const MockApp = ({ Component, pageProps }: CustomAppProps) => (
