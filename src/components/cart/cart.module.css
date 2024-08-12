@@ -1,0 +1,36 @@
+.cart {
+  position: absolute;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 20px;
+  top: 840px;
+  left: 395px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.btn {
+  margin-left: 5px;
+  color: var(--btn-text-color);
+  border: 1px solid var(--btn-border-color);
+  background-color: var(--btn-background-color);
+  height: 40px;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.savebtn {
+  text-decoration: none;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.text {
+  color: var(--text-color);
+  font-size: 20px;
+  user-select: none;
+}
