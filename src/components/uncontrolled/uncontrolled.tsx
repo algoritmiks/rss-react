@@ -84,10 +84,16 @@ export const Uncontrolled: React.FC = () => {
       </nav>
 
       <div>
-        <form className={css.form} autoComplete="on" onSubmit={handleSubmit}>
+        <form className={css.form} onSubmit={handleSubmit}>
           <div className={css.inputContainer}>
             <label htmlFor="name">name</label>
-            <input className={css.inp} type="text" id="name" ref={nameRef} />
+            <input
+              className={css.inp}
+              autoComplete="on"
+              type="text"
+              id="name"
+              ref={nameRef}
+            />
             {errors.name && <span className={css.error}>{errors.name}</span>}
           </div>
 
@@ -105,7 +111,13 @@ export const Uncontrolled: React.FC = () => {
 
           <div className={css.inputContainer}>
             <label htmlFor="email">e-mail</label>
-            <input className={css.inp} type="text" id="email" ref={emailRef} />
+            <input
+              className={css.inp}
+              type="text"
+              id="email"
+              autoComplete="on"
+              ref={emailRef}
+            />
             {errors.email && <span className={css.error}>{errors.email}</span>}
           </div>
 
@@ -168,8 +180,9 @@ export const Uncontrolled: React.FC = () => {
           </div>
 
           <div className={css.inputContainer}>
-            <label htmlFor="coutnry">country</label>
+            <label htmlFor="country">country</label>
             <input
+              autoComplete="on"
               className={css.inp}
               type="text"
               id="country"
