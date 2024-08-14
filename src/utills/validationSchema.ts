@@ -4,13 +4,19 @@ export const validationSchema = yup.object().shape({
   name: yup
     .string()
     .required('name required')
-    .matches(/^(?=.*[A-ZА-Я])/, 'first letter should be uppercase'),
+    .matches(/^[A-Z]/, 'first letter should be uppercase'),
   age: yup
     .number()
     .required('age required')
     .integer('age should be an integer')
     .positive('age should be a positive number'),
-  email: yup.string().required('email required').email('invalid email'),
+  email: yup
+    .string()
+    .required('email required')
+    .matches(
+      /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+      'invalid email',
+    ),
   pwd: yup
     .string()
     .required('password required')
