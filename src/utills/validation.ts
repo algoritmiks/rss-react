@@ -2,9 +2,9 @@ import { ValidationError } from 'yup'
 import { validationSchema } from './validationSchema'
 import { IFormFields } from '../types/types'
 
-interface IValidation {
-  isValid: boolean
-  validatedData?: IFormFields
+interface IFormValidation {
+  isFormValid: boolean
+  validFormData?: IFormFields
   errors: Record<string, string>
 }
 
@@ -12,14 +12,16 @@ interface IFormData {
   [key: string]: string | number | boolean | undefined | null | FileList
 }
 
-export const validateForm = async (data: IFormData): Promise<IValidation> => {
+export const validateForm = async (
+  data: IFormData,
+): Promise<IFormValidation> => {
   try {
-    const validatedData = await validationSchema.validate(data, {
+    const validFormData = await validationSchema.validate(data, {
       abortEarly: false,
     })
     return {
-      isValid: true,
-      validatedData,
+      isFormValid: true,
+      validFormData,
       errors: {},
     }
   } catch (error) {
@@ -31,9 +33,9 @@ export const validateForm = async (data: IFormData): Promise<IValidation> => {
           errors[err.path] = err.message
         }
       })
-      return { isValid: false, errors }
+      return { isFormValid: false, errors }
     }
 
-    return { isValid: false, errors: {} }
+    return { isFormValid: false, errors: {} }
   }
 }

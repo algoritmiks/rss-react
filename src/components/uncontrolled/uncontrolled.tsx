@@ -1,13 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { validateForm } from '../../utills/validation'
 import { TRootState } from '../../store/store'
-// import { addForm } from '../../store/reducers/forms'
-// import { fileReader } from '../../utills/fileReader'
+import { addForm } from '../../store/reducers/forms'
+import { fileReader } from '../../utills/fileReader'
+import { IFormData } from '../../types/types'
 import css from './uncontrolled.module.css'
 
 export const Uncontrolled: React.FC = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [errors, setErrorMessages] = useState<Record<string, string>>({})
   const [isShowPassword, setShowPassword] = useState(false)
   const countries = useSelector((state: TRootState) => state.countries)
@@ -42,17 +45,27 @@ export const Uncontrolled: React.FC = () => {
       tc: tcRef.current?.checked,
     }
 
-    const { isValid, validatedData, errors } = await validateForm(formData)
+    const { isFormValid, validFormData, errors } = await validateForm(formData)
 
-    if (isValid && validatedData) {
-      // const readerImage = formData.img ? await fileReader(formData.img[0]) : ''
+    if (isFormValid && validFormData) {
+      const readerImage = formData.img ? await fileReader(formData.img[0]) : ''
+
+      const validatedForm: IFormData = {
+        name: validFormData.name,
+        age: validFormData.age,
+        email: validFormData.email,
+        pwd: validFormData.pwd,
+        pwdConfirm: validFormData.pwdConfirm,
+        gender: validFormData.gender,
+        country: validFormData.country,
+        img: readerImage,
+        tc: validFormData.tc ?? true,
+      }
+
+      dispatch(addForm(validatedForm))
+      navigate('/')
     }
-
     setErrorMessages(errors)
-
-    console.log('isValid > ', isValid)
-    console.log('validatedData > ', validatedData)
-    console.log('errors > ', errors)
   }
 
   const handleShowPassword = () => {

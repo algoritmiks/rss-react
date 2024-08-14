@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TFormFields } from '../../types/types'
+import { IFormData } from '../../types/types'
 
 export const formsSlice = createSlice({
   name: 'forms',
-  initialState: <TFormFields[]>[],
+  initialState: <IFormData[]>[],
   reducers: {
-    addForm: (state, action: PayloadAction<{ form: TFormFields }>) => {
-      state.push(action.payload.form)
+    addForm: (state, action: PayloadAction<IFormData>) => {
+      state.push(action.payload)
     },
   },
 })
