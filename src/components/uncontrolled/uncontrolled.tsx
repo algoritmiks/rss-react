@@ -1,0 +1,206 @@
+import { Link } from 'react-router-dom'
+import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { validateForm } from '../../utills/validation'
+import { TRootState } from '../../store/store'
+// import { addForm } from '../../store/reducers/forms'
+// import { fileReader } from '../../utills/fileReader'
+import css from './uncontrolled.module.css'
+
+export const Uncontrolled: React.FC = () => {
+  const [errors, setErrorMessages] = useState<Record<string, string>>({})
+  const [isShowPassword, setShowPassword] = useState(false)
+  const countries = useSelector((state: TRootState) => state.countries)
+
+  const nameRef = useRef<HTMLInputElement>(null)
+  const ageRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const pwdRef = useRef<HTMLInputElement>(null)
+  const pwdConfRef = useRef<HTMLInputElement>(null)
+  const maleRef = useRef<HTMLInputElement>(null)
+  const femaleRef = useRef<HTMLInputElement>(null)
+  const countryRef = useRef<HTMLInputElement>(null)
+  const imgRef = useRef<HTMLInputElement>(null)
+  const tcRef = useRef<HTMLInputElement>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const formData = {
+      name: nameRef.current?.value,
+      age: Number(ageRef.current?.value),
+      email: emailRef.current?.value,
+      pwd: pwdRef.current?.value,
+      pwdConfirm: pwdConfRef.current?.value,
+      gender: maleRef.current?.checked
+        ? 'male'
+        : femaleRef.current?.checked
+          ? 'female'
+          : '',
+      country: countryRef.current?.value,
+      img: imgRef.current?.files,
+      tc: tcRef.current?.checked,
+    }
+
+    const { isValid, validatedData, errors } = await validateForm(formData)
+
+    if (isValid && validatedData) {
+      // const readerImage = formData.img ? await fileReader(formData.img[0]) : ''
+    }
+
+    setErrorMessages(errors)
+
+    console.log('isValid > ', isValid)
+    console.log('validatedData > ', validatedData)
+    console.log('errors > ', errors)
+  }
+
+  const handleShowPassword = () => {
+    setShowPassword((showPwd) => !showPwd)
+  }
+
+  return (
+    <>
+      <nav className={css.navigation}>
+        <Link className={css.link} to="/">
+          <button className={`${css.btn} ${css.navBtn}`}>Home</button>
+        </Link>
+        <Link className={css.link} to="/controlled">
+          <button className={`${css.btn} ${css.navBtn}`}>Controlled</button>
+        </Link>
+      </nav>
+
+      <div>
+        <form className={css.form} autoComplete="on" onSubmit={handleSubmit}>
+          <div className={css.inputContainer}>
+            <label htmlFor="name">name</label>
+            <input className={css.inp} type="text" id="name" ref={nameRef} />
+            {errors.name && <span className={css.error}>{errors.name}</span>}
+          </div>
+
+          <div className={css.inputContainer}>
+            <label htmlFor="age">age</label>
+            <input
+              className={css.inp}
+              type="number"
+              id="age"
+              min="0"
+              ref={ageRef}
+            />
+            {errors.age && <span className={css.error}>{errors.age}</span>}
+          </div>
+
+          <div className={css.inputContainer}>
+            <label htmlFor="email">e-mail</label>
+            <input className={css.inp} type="text" id="email" ref={emailRef} />
+            {errors.email && <span className={css.error}>{errors.email}</span>}
+          </div>
+
+          <div className={css.inputContainer}>
+            <label htmlFor="pwd">password</label>
+            <input
+              className={css.inp}
+              type={isShowPassword ? 'text' : 'password'}
+              id="pwd"
+              ref={pwdRef}
+            />
+            <div className={css.showPwd} onClick={handleShowPassword}>
+              👁
+            </div>
+            {errors.pwd && <span className={css.error}>{errors.pwd}</span>}
+          </div>
+          <div className={css.inputContainer}>
+            <label htmlFor="pwdConf">password confirm</label>
+            <input
+              className={css.inp}
+              type={isShowPassword ? 'text' : 'password'}
+              id="pwdConf"
+              ref={pwdConfRef}
+            />
+            <div className={css.showPwd} onClick={handleShowPassword}>
+              👁
+            </div>
+            {errors.pwdConfirm && (
+              <span className={css.error}>{errors.pwdConfirm}</span>
+            )}
+          </div>
+
+          <div className={css.inputContainer}>
+            <legend>gender</legend>
+            <div className={css.radioContainer}>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  ref={maleRef}
+                  id="male"
+                />
+                <label htmlFor="male">male</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  id="female"
+                  ref={femaleRef}
+                />
+                <label htmlFor="female">female</label>
+              </div>
+            </div>
+            {errors.gender && (
+              <span className={css.error}>{errors.gender}</span>
+            )}
+          </div>
+
+          <div className={css.inputContainer}>
+            <label htmlFor="coutnry">country</label>
+            <input
+              className={css.inp}
+              type="text"
+              id="country"
+              list="countries"
+              ref={countryRef}
+            />
+            <datalist id="countries">
+              {countries.map((country) => (
+                <option key={country}>{country}</option>
+              ))}
+            </datalist>
+            {errors.country && (
+              <span className={css.error}>{errors.country}</span>
+            )}
+          </div>
+
+          <div className={css.inputContainer}>
+            <label htmlFor="picture">image upload</label>
+            <div className={css.imageContainer}>
+              <input
+                className={css.fileInp}
+                type="file"
+                id="picture"
+                ref={imgRef}
+              />
+            </div>
+            {errors.img && <span className={css.error}>{errors.img}</span>}
+          </div>
+
+          <div className={css.checkBoxContainer}>
+            <div>
+              <input type="checkbox" id="accept" ref={tcRef} />
+              <label htmlFor="accept">accept T&C</label>
+            </div>
+            {errors.tc && (
+              <span className={`${css.error} ${css.tcError}`}>{errors.tc}</span>
+            )}
+          </div>
+
+          <button className={css.btn} type="submit">
+            submit
+          </button>
+        </form>
+      </div>
+    </>
+  )
+}

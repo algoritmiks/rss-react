@@ -1,0 +1,102 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.btn {
+  border: 1px solid rgb(184, 184, 184);
+  height: 40px;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navBtn {
+  width: 110px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.inputContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 400px;
+  margin-top: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.inp {
+  width: 390px;
+  height: 30px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid rgb(184, 184, 184);
+  padding: 5px;
+  font-size: larger;
+}
+
+.checkBoxContainer {
+  position: relative;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.imageContainer {
+  display: flex;
+  padding: 5px;
+  padding-bottom: 10px;
+  flex-direction: column;
+  border: 1px solid rgb(184, 184, 184);
+  width: 390px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.fileInp {
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+  font-size: larger;
+}
+
+.radioContainer {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 10px;
+}
+
+.error {
+  position: absolute;
+  top: 70px;
+  color: red;
+  font-size: 14px;
+}
+
+.tcError {
+  top: 23px;
+}
+
+.showPwd {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+  cursor: pointer;
+}
