@@ -99,13 +99,7 @@ export const Uncontrolled: React.FC = () => {
 
           <div className={css.inputContainer}>
             <label htmlFor="age">age</label>
-            <input
-              className={css.inp}
-              type="number"
-              id="age"
-              min="0"
-              ref={ageRef}
-            />
+            <input className={css.inp} type="number" id="age" ref={ageRef} />
             {errors.age && <span className={css.error}>{errors.age}</span>}
           </div>
 

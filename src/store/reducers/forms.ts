@@ -6,7 +6,7 @@ export const formsSlice = createSlice({
   initialState: <IFormData[]>[],
   reducers: {
     addForm: (state, action: PayloadAction<IFormData>) => {
-      state.push(action.payload)
+      state.unshift(action.payload)
     },
   },
 })

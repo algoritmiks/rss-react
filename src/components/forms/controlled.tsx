@@ -81,7 +81,6 @@ export const Controlled: React.FC = () => {
               className={css.inp}
               type="number"
               id="age"
-              min="0"
               {...register('age')}
             />
             {errors.age && (

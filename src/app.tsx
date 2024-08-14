@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import { Cards } from './components/cards/cards'
 import css from './app.module.css'
 
 function App() {
   return (
-    <>
-      <nav>
+    <div className={css.container}>
+      <nav className={css.navigation}>
         <Link className={css.link} to="/controlled">
           <button className={css.btn}>Controlled</button>
         </Link>
@@ -12,8 +13,10 @@ function App() {
           <button className={css.btn}>Uncontrolled</button>
         </Link>
       </nav>
-      <div>HOME</div>
-    </>
+      <div>
+        <Cards />
+      </div>
+    </div>
   )
 }
 

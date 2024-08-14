@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  width: 400px;
+  height: 400px;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 15px;
+}
+
+.card:first-child {
+  border: 1px solid #636363;
+  background-color: #cacaca;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
