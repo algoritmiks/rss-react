@@ -12,7 +12,7 @@ export const Cards: React.FC = () => {
       <div className={css.cards}>
         {forms.map((form, ind) => (
           <div className={css.card} key={ind}>
-            <img className={css.img} src={forms[0].img}></img>
+            <img className={css.img} src={form.img}></img>
             <span>Name: {form.name}</span>
             <span>Age: {form.age}</span>
             <span>e-mail: {form.email}</span>
