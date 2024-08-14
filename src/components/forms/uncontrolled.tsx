@@ -6,7 +6,7 @@ import { TRootState } from '../../store/store'
 import { addForm } from '../../store/reducers/forms'
 import { fileReader } from '../../utills/fileReader'
 import { IFormData } from '../../types/types'
-import css from './uncontrolled.module.css'
+import css from './forms.module.css'
 
 export const Uncontrolled: React.FC = () => {
   const dispatch = useDispatch()

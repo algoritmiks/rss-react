@@ -3,7 +3,7 @@ import * as yup from 'yup'
 export const validationSchema = yup.object().shape({
   name: yup
     .string()
-    .matches(/^[A-Z]/, 'first letter should be uppercase')
+    .matches(/^[A-ZА-Я]/, 'first letter should be uppercase')
     .required('name required'),
   age: yup
     .number()

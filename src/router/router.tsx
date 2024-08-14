@@ -1,9 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../app.tsx'
 import { ErrorPage } from '../components/errorPage/errorPage.tsx'
-import Controlled from '../components/controlled/controlled.tsx'
-import { Uncontrolled } from '../components/uncontrolled/uncontrolled.tsx'
-
+import { Controlled } from '../components/forms/controlled.tsx'
+import { Uncontrolled } from '../components/forms/uncontrolled.tsx'
 export const router = createBrowserRouter([
   {
     path: '/',
