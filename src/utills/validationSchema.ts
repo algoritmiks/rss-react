@@ -7,6 +7,7 @@ export const validationSchema = yup.object().shape({
     .required('name required'),
   age: yup
     .number()
+    .transform((value) => (Number.isNaN(value) ? null : value))
     .positive('age should be a positive number')
     .required('age required'),
   email: yup

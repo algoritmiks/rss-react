@@ -21,7 +21,7 @@ export const Controlled: React.FC = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    mode: 'all',
+    mode: 'onChange',
     resolver: yupResolver(validationSchema),
   })
 
