@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import { store } from '../store/store'
 
 export const validationSchema = yup.object().shape({
   name: yup
@@ -32,7 +33,13 @@ export const validationSchema = yup.object().shape({
     .required('password confirmation required')
     .oneOf([yup.ref('pwd')], 'passwords should match'),
   gender: yup.string().required('gender is required'),
-  country: yup.string().required('country required'),
+  country: yup
+    .string()
+    .required('country required')
+    .test('country exist', 'country not found', (country) => {
+      const countries = store.getState().countries
+      return countries.includes(country)
+    }),
   img: yup
     .mixed<FileList>()
     .test('img', 'image required', (file) => Boolean(file))
