@@ -1,0 +1,29 @@
+.link {
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  border: 1px solid rgb(184, 184, 184);
+  height: 40px;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navBtn {
+  width: 130px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
